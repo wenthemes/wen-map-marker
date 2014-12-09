@@ -1,0 +1,41 @@
+/**
+ * All of the CSS for your dashboard-specific functionality should be
+ * included in this file.
+ */
+.wen-map-marker-wrapper{
+	position: relative;
+	border: 1px solid #DFDFDF;
+	background: none repeat scroll 0% 0% #FFF;
+}
+.wen-map-marker-wrapper .wen-map-marker-search-bar{
+	position: relative;
+	border-bottom: 1px solid #DFDFDF;
+}
+.wen-map-marker-wrapper .wen-map-marker-locate-user{
+	background: url("../images/target-icon.png") no-repeat scroll 0% 0% transparent;
+	font-size: 0px;
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	position: absolute;
+	top: 4px;
+	right: 0;
+	opacity: .5;
+}
+.wen-map-marker-wrapper .wen-map-marker-locate-user:hover{
+	opacity: 1;
+}
+.wen-map-marker-wrapper input[type="text"] {
+	width: 100%;
+	resize: none;
+	margin: 0px;
+
+	font-size: 12px;
+	line-height: 16px;
+	padding: 10px;
+	border: 0px none;
+	box-shadow: none;
+	border-radius: 0px;
+	font-family: inherit;
+	cursor: text;
+}
