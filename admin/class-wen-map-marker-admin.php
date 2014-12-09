@@ -275,11 +275,25 @@ class wen_map_marker_Admin {
 	function option_page_init(){
 	    include(sprintf("%s/partials/wen-map-marker-admin-display.php",dirname(__FILE__)));
 	}
-	/*
-	* register our settings
-	*/
+
+	/**
+	 * register our settings
+	 *
+	 * @since    1.0.0
+	 */
 	function register_settings() {
 		register_setting( 'wen-map-marker-settings-group', 'wen_map_marker_settings' );
 	}
 
+	/**
+	 * Add the settings link to the plugins page
+	 *
+	 * @since    1.0.0
+	 */
+	function plugin_settings_link($links)
+	{
+		$settings_link = '<a href="admin.php?page=wen-map-marker">'.__('Settings',"wen-map-marker").'</a>';
+		array_unshift($links, $settings_link);
+		return $links;
+	}
 }

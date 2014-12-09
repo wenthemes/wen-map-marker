@@ -155,7 +155,6 @@ class wen_map_marker {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-
 		$plugin_admin = new wen_map_marker_Admin( $this->get_wen_map_marker(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'setup_menu' );
@@ -164,6 +163,7 @@ class wen_map_marker {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_meta_boxes' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'meta_box_save' );
+		$this->loader->add_filter( 'plugin_action_links_'.$this->wen_map_marker."/".$this->wen_map_marker.".php", $plugin_admin, 'plugin_settings_link' );
 		
 	}
 
