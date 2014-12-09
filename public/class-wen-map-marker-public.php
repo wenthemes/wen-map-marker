@@ -165,7 +165,13 @@ class wen_map_marker_Public {
 		if ( !is_singular() )
 			return $content;
 
+		$wen_map_marker_post_type = get_option('wen_map_marker_post_type');
+		
 		global $post;
+		
+		if(is_array($wen_map_marker_post_type) and !in_array($post->post_type,$wen_map_marker_post_type))
+			return $content;
+
 		$wen_map_marker_content_append = get_post_meta( $post->ID, 'wen_map_marker_content_append', true );
 		
 		if(''==$wen_map_marker_content_append)

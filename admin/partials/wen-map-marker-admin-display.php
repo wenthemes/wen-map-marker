@@ -36,16 +36,19 @@ if( isset($_GET['settings-updated']) and 'true' == $_GET['settings-updated']){
         $post_types = get_post_types(array(   'public'   => true )); 
         $wen_map_marker_post_type = get_option('wen_map_marker_post_type');
         ?>
-        <select name="wen_map_marker_post_type[]" multiple="multiple">
-        	<?php
-        	foreach ($post_types as $key => $post_type) {
-        		if('attachment' != $key){
-	        		$selected = (in_array($key,$wen_map_marker_post_type))?"selected='selected'":"";
-	        		echo '<option value="'.$key.'" '.$selected.'>'.ucfirst($post_type).'</option>';
-        		}
-        	}
-        	?>
-        </select>
+        <fieldset>
+            <legend class="screen-reader-text"><span>Fieldset Example</span></legend>
+            <?php
+            foreach ($post_types as $key => $post_type) {
+                if('attachment' != $key){
+                    $checked = (in_array($key,$wen_map_marker_post_type))?"checked='checked'":"";
+                    echo '<label for="post_type_'.$key.'">
+                            <input name="wen_map_marker_post_type[]" type="checkbox" '.$checked.' value="'.$key.'" id="post_type_'.$key.'"  />
+                            <span>'.ucfirst($post_type).'</span></label><br />';
+                }
+            }
+            ?>
+        </fieldset>
         </td>
 
 </tr>
