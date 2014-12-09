@@ -194,7 +194,7 @@ class wen_map_maker_Admin {
 		$screen = get_current_screen();
 		$wen_map_maker_post_type = get_option('wen_map_maker_post_type');
 		
-		if(!in_array($screen->id,$wen_map_maker_post_type))
+		if(is_array($wen_map_maker_post_type) and !in_array($screen->id,$wen_map_maker_post_type))
 			return;
 
 		$script = '<script type="text/javascript">'."\n";
