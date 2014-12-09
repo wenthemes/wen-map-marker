@@ -165,11 +165,11 @@ class wen_map_marker_Public {
 		if ( !is_singular() )
 			return $content;
 
-		$wen_map_marker_post_type = get_option('wen_map_marker_post_type');
+		$wen_map_marker_settings = get_option('wen_map_marker_settings');
 		
 		global $post;
-		
-		if(is_array($wen_map_marker_post_type) and !in_array($post->post_type,$wen_map_marker_post_type))
+
+		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($post->post_type,$wen_map_marker_settings['post_types']))
 			return $content;
 
 		$wen_map_marker_content_append = get_post_meta( $post->ID, 'wen_map_marker_content_append', true );

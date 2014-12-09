@@ -110,8 +110,9 @@ class wen_map_marker_Admin {
 	 * @since    1.0.0
 	 */
 	public function add_meta_boxes() {
-		$wen_map_marker_post_type = get_option('wen_map_marker_post_type');
-		if(!empty( $wen_map_marker_post_type)){
+		 
+		$wen_map_marker_settings = get_option('wen_map_marker_settings');
+		if( isset($wen_map_marker_settings['post_types']) and  !empty( $wen_map_marker_post_type['post_types'])){
 			foreach ($wen_map_marker_post_type as $key => $postType) {
 				add_meta_box( 'wen-map-marker-meta-box', __( 'WEN Map Marker', 'wen-map-marker' ), array(&$this,'meta_box_output'), $postType, 'normal', 'high' );
 			}
@@ -127,7 +128,7 @@ class wen_map_marker_Admin {
 
 	function meta_box_output( $post ) {
 		// create a nonce field
-		wp_nonce_field( 'my_wpshed_meta_box_nonce', 'wen_map_marker_meta_box_nonce' ); ?>
+		wp_nonce_field( 'wen_map_marker_meta_box_nonce', 'wen_map_marker_meta_box_nonce' ); ?>
 		<div class="wen-map-marker-wrapper">
 			<div class="wen-map-marker-search-bar">
 				<a href="javascript:void(0);" class="clear-marker" title="Clear location">Clear marker</a>
@@ -177,7 +178,7 @@ class wen_map_marker_Admin {
 		if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
 
 		// Verify the nonce. If insn't there, stop the script
-		if( !isset( $_POST['wen_map_marker_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['wen_map_marker_meta_box_nonce'], 'my_wpshed_meta_box_nonce' ) ) return;
+		if( !isset( $_POST['wen_map_marker_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['wen_map_marker_meta_box_nonce'], 'wen_map_marker_meta_box_nonce' ) ) return;
 
 		// Stop the script if the user does not have edit permissions
 		if( !current_user_can( 'edit_post' ) ) return;
@@ -207,9 +208,9 @@ class wen_map_marker_Admin {
 	function admin_head() {
 
 		$screen = get_current_screen();
-		$wen_map_marker_post_type = get_option('wen_map_marker_post_type');
+		$wen_map_marker_settings = get_option('wen_map_marker_settings');
 		
-		if(is_array($wen_map_marker_post_type) and !in_array($screen->id,$wen_map_marker_post_type))
+		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
 			return;
 
 		$map_options = array( 'showMarker' => false,
@@ -278,7 +279,7 @@ class wen_map_marker_Admin {
 	* register our settings
 	*/
 	function register_settings() {
-		register_setting( 'wen-map-marker-settings-group', 'wen_map_marker_post_type' );
+		register_setting( 'wen-map-marker-settings-group', 'wen_map_marker_settings' );
 	}
 
 }
