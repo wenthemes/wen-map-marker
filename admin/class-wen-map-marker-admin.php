@@ -112,8 +112,8 @@ class wen_map_marker_Admin {
 	public function add_meta_boxes() {
 		 
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
-		if( isset($wen_map_marker_settings['post_types']) and  !empty( $wen_map_marker_post_type['post_types'])){
-			foreach ($wen_map_marker_post_type as $key => $postType) {
+		if( isset($wen_map_marker_settings['post_types']) and  !empty( $wen_map_marker_settings['post_types'])){
+			foreach ($wen_map_marker_settings['post_types'] as $key => $postType) {
 				add_meta_box( 'wen-map-marker-meta-box', __( 'WEN Map Marker', 'wen-map-marker' ), array(&$this,'meta_box_output'), $postType, 'normal', 'high' );
 			}
 		}
@@ -209,7 +209,6 @@ class wen_map_marker_Admin {
 
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
-		
 		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
 			return;
 
@@ -283,6 +282,41 @@ class wen_map_marker_Admin {
 	 */
 	function register_settings() {
 		register_setting( 'wen-map-marker-settings-group', 'wen_map_marker_settings' );
+
+		add_settings_section(
+			'wen_map_marker_setting_post_type_section', 
+			__( 'Post Type Options', 'wen-map-marker' ), 
+			'__return_false',
+			'wen-map-marker-settings-group'
+		);
+
+		add_settings_field( 
+			'wen_map_marker_setting_post_types', 
+			__( 'Select Post Types', 'wen-map-marker' ), 
+			array(&$this,'checkbox_field_render'), 
+			'wen-map-marker-settings-group', 
+			'wen_map_marker_setting_post_type_section' 
+		);
+	}
+
+	/**
+	 * Section callback function
+	 *
+	 * @since    1.0.0
+	 */
+	function checkbox_field_render()
+	{
+		$post_types = get_post_types(array(   'public'   => true )); 
+        $wen_map_marker_settings = get_option('wen_map_marker_settings');
+		foreach ($post_types as $key => $post_type) {
+            if('attachment' != $key){
+                $checked = ( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and in_array($key,$wen_map_marker_settings['post_types']))?"checked='checked'":"";
+                echo '<label for="post_type_'.$key.'">
+                        <input name="wen_map_marker_settings[post_types][]" type="checkbox" '.$checked.' value="'.$key.'" id="post_type_'.$key.'"  />
+                        <span>'.ucfirst($post_type).'</span></label><br />';
+            }
+        }
+
 	}
 
 	/**
