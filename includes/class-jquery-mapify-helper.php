@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    wen_map_maker
- * @subpackage wen_map_maker/includes
+ * @package    wen_map_marker
+ * @subpackage wen_map_marker/includes
  */
 
 class jquery_mapify_helper {

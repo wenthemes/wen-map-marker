@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    wen_map_maker
- * @subpackage wen_map_maker/public
+ * @package    wen_map_marker
+ * @subpackage wen_map_marker/public
  */
 
 /**
@@ -16,20 +16,20 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the dashboard-specific stylesheet and JavaScript.
  *
- * @package    wen_map_maker
- * @subpackage wen_map_maker/public
+ * @package    wen_map_marker
+ * @subpackage wen_map_marker/public
  * @author     Your Name <email@example.com>
  */
-class wen_map_maker_Public {
+class wen_map_marker_Public {
 
 	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $wen_map_maker    The ID of this plugin.
+	 * @var      string    $wen_map_marker    The ID of this plugin.
 	 */
-	private $wen_map_maker;
+	private $wen_map_marker;
 
 	/**
 	 * The version of this plugin.
@@ -44,12 +44,12 @@ class wen_map_maker_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @var      string    $wen_map_maker       The name of the plugin.
+	 * @var      string    $wen_map_marker       The name of the plugin.
 	 * @var      string    $version    The version of this plugin.
 	 */
-	public function __construct( $wen_map_maker, $version ) {
+	public function __construct( $wen_map_marker, $version ) {
 
-		$this->wen_map_maker = $wen_map_maker;
+		$this->wen_map_marker = $wen_map_marker;
 		$this->version = $version;
 
 	}
@@ -65,15 +65,15 @@ class wen_map_maker_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in wen_map_maker_Public_Loader as all of the hooks are defined
+		 * defined in wen_map_marker_Public_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The wen_map_maker_Public_Loader will then create the relationship
+		 * The wen_map_marker_Public_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->wen_map_maker, plugin_dir_url( __FILE__ ) . 'css/wen-map-maker-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->wen_map_marker, plugin_dir_url( __FILE__ ) . 'css/wen-map-marker-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,10 +88,10 @@ class wen_map_maker_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in wen_map_maker_Public_Loader as all of the hooks are defined
+		 * defined in wen_map_marker_Public_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The wen_map_maker_Public_Loader will then create the relationship
+		 * The wen_map_marker_Public_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -100,7 +100,7 @@ class wen_map_maker_Public {
 		wp_enqueue_script( 'google-map-api', 'http://maps.google.com/maps/api/js?sensor=false', array( 'jquery' ), $this->version );
 		wp_enqueue_script( 'jquery-jMapify', plugin_dir_url( __FILE__ ) . 'js/jquery.jMapify.js', array( 'jquery' ), $this->version, false );
 
-		wp_enqueue_script( $this->wen_map_maker, plugin_dir_url( __FILE__ ) . 'js/wen-map-maker-public.js', array( 'jquery' ), $this->version, false );		
+		wp_enqueue_script( $this->wen_map_marker, plugin_dir_url( __FILE__ ) . 'js/wen-map-marker-public.js', array( 'jquery' ), $this->version, false );		
 
 	}
 

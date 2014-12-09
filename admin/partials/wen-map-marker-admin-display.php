@@ -8,20 +8,20 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    wen_map_maker
- * @subpackage wen_map_maker/admin/partials
+ * @package    wen_map_marker
+ * @subpackage wen_map_marker/admin/partials
  */
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="wrap">
-<h2><?php _e("WEN Map Marker Settings","wen-map-maker");?></h2>
+<h2><?php _e("WEN Map Marker Settings","wen-map-marker");?></h2>
 <?php
 if( isset($_GET['settings-updated']) and 'true' == $_GET['settings-updated']){
-	echo "<div id=\"message\" class=\"updated below-h2\"><p>".__("Settings has been updated.","wen-map-maker")."</p></div>";
+	echo "<div id=\"message\" class=\"updated below-h2\"><p>".__("Settings has been updated.","wen-map-marker")."</p></div>";
 }
 ?>
-<h3><?php _e("Post Type Options","wen-map-maker");?></h3>
+<h3><?php _e("Post Type Options","wen-map-marker");?></h3>
 <form method="post" action="options.php">
 
 <?php settings_fields( 'wen-map-marker-settings-group' ); ?>
@@ -30,17 +30,17 @@ if( isset($_GET['settings-updated']) and 'true' == $_GET['settings-updated']){
 <table class="form-table">
         <tr valign="top">
 
-<th scope="row"><?php _e('Select Post Types',"wen-map-maker");?></th>
+<th scope="row"><?php _e('Select Post Types',"wen-map-marker");?></th>
         <td>
         <?php 
         $post_types = get_post_types(array(   'public'   => true )); 
-        $wen_map_maker_post_type = get_option('wen_map_maker_post_type');
+        $wen_map_marker_post_type = get_option('wen_map_marker_post_type');
         ?>
-        <select name="wen_map_maker_post_type[]" multiple="multiple">
+        <select name="wen_map_marker_post_type[]" multiple="multiple">
         	<?php
         	foreach ($post_types as $key => $post_type) {
         		if('attachment' != $key){
-	        		$selected = (in_array($key,$wen_map_maker_post_type))?"selected='selected'":"";
+	        		$selected = (in_array($key,$wen_map_marker_post_type))?"selected='selected'":"";
 	        		echo '<option value="'.$key.'" '.$selected.'>'.ucfirst($post_type).'</option>';
         		}
         	}
@@ -54,7 +54,7 @@ if( isset($_GET['settings-updated']) and 'true' == $_GET['settings-updated']){
 <?php submit_button(); ?>
 </form>
 
-<h3><?php _e("Generate Custom Map Marker Shortcode","wen-map-maker");?></h3>
+<h3><?php _e("Generate Custom Map Marker Shortcode","wen-map-marker");?></h3>
 
 <div class="">
 	<div class="wen-map-marker-wrapper">

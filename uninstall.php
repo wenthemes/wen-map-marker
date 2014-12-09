@@ -22,7 +22,7 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    wen_map_maker
+ * @package    wen_map_marker
  */
 
 // If uninstall not called from WordPress, then exit.

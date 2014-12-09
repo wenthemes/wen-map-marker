@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    wen_map_maker
- * @subpackage wen_map_maker/admin
+ * @package    wen_map_marker
+ * @subpackage wen_map_marker/admin
  */
 
 /**
@@ -16,20 +16,20 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the dashboard-specific stylesheet and JavaScript.
  *
- * @package    wen_map_maker
- * @subpackage wen_map_maker/admin
+ * @package    wen_map_marker
+ * @subpackage wen_map_marker/admin
  * @author     Your Name <email@example.com>
  */
-class wen_map_maker_Admin {
+class wen_map_marker_Admin {
 
 	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $wen_map_maker    The ID of this plugin.
+	 * @var      string    $wen_map_marker    The ID of this plugin.
 	 */
-	private $wen_map_maker;
+	private $wen_map_marker;
 
 	/**
 	 * The version of this plugin.
@@ -44,12 +44,12 @@ class wen_map_maker_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @var      string    $wen_map_maker       The name of this plugin.
+	 * @var      string    $wen_map_marker       The name of this plugin.
 	 * @var      string    $version    The version of this plugin.
 	 */
-	public function __construct( $wen_map_maker, $version ) {
+	public function __construct( $wen_map_marker, $version ) {
 
-		$this->wen_map_maker = $wen_map_maker;
+		$this->wen_map_marker = $wen_map_marker;
 		$this->version = $version;
 
 	}
@@ -65,15 +65,15 @@ class wen_map_maker_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in wen_map_maker_Admin_Loader as all of the hooks are defined
+		 * defined in wen_map_marker_Admin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The wen_map_maker_Admin_Loader will then create the relationship
+		 * The wen_map_marker_Admin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->wen_map_maker, plugin_dir_url( __FILE__ ) . 'css/wen-map-maker-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->wen_map_marker, plugin_dir_url( __FILE__ ) . 'css/wen-map-marker-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,10 +88,10 @@ class wen_map_maker_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in wen_map_maker_Admin_Loader as all of the hooks are defined
+		 * defined in wen_map_marker_Admin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The wen_map_maker_Admin_Loader will then create the relationship
+		 * The wen_map_marker_Admin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -100,7 +100,7 @@ class wen_map_maker_Admin {
 		// wp_enqueue_script( 'jquery-jMapify', plugin_dir_url( __FILE__ ) . 'js/jquery.jMapify.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'google-map-api', 'http://maps.google.com/maps/api/js?sensor=false&libraries=places', array( 'jquery' ), $this->version );
 		wp_enqueue_script( 'jquery-jMapify', plugin_dir_url(__FILE__) . '../public/js/jquery.jMapify.js', array( 'jquery' ), $this->version, false );
-		wp_enqueue_script( $this->wen_map_maker, plugin_dir_url( __FILE__ ) . 'js/wen-map-maker-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->wen_map_marker, plugin_dir_url( __FILE__ ) . 'js/wen-map-marker-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -110,10 +110,10 @@ class wen_map_maker_Admin {
 	 * @since    1.0.0
 	 */
 	public function add_meta_boxes() {
-		$wen_map_maker_post_type = get_option('wen_map_maker_post_type');
-		if(!empty( $wen_map_maker_post_type)){
-			foreach ($wen_map_maker_post_type as $key => $postType) {
-				add_meta_box( 'wen-map-maker-meta-box', __( 'WEN Map Marker', 'wen-map-maker' ), array(&$this,'meta_box_output'), $postType, 'normal', 'high' );
+		$wen_map_marker_post_type = get_option('wen_map_marker_post_type');
+		if(!empty( $wen_map_marker_post_type)){
+			foreach ($wen_map_marker_post_type as $key => $postType) {
+				add_meta_box( 'wen-map-marker-meta-box', __( 'WEN Map Marker', 'wen-map-marker' ), array(&$this,'meta_box_output'), $postType, 'normal', 'high' );
 			}
 		}
 
@@ -207,9 +207,9 @@ class wen_map_maker_Admin {
 	function admin_head() {
 
 		$screen = get_current_screen();
-		$wen_map_maker_post_type = get_option('wen_map_maker_post_type');
+		$wen_map_marker_post_type = get_option('wen_map_marker_post_type');
 		
-		if(is_array($wen_map_maker_post_type) and !in_array($screen->id,$wen_map_maker_post_type))
+		if(is_array($wen_map_marker_post_type) and !in_array($screen->id,$wen_map_marker_post_type))
 			return;
 
 		$map_options = array( 'showMarker' => false,
@@ -267,18 +267,18 @@ class wen_map_maker_Admin {
 	}
 
 	function setup_menu(){
-	    add_menu_page( __('WEN Map Marker',"wen-map-maker"), __('WEN Options',"wen-map-maker"), 'manage_options', 'wen-map-maker', array(&$this,'option_page_init') );
+	    add_menu_page( __('WEN Map Marker',"wen-map-marker"), __('WEN Options',"wen-map-marker"), 'manage_options', 'wen-map-marker', array(&$this,'option_page_init') );
 	    add_action( 'admin_init', array(&$this,'register_settings' ));
 	}
 
 	function option_page_init(){
-	    include(sprintf("%s/partials/wen-map-maker-admin-display.php",dirname(__FILE__)));
+	    include(sprintf("%s/partials/wen-map-marker-admin-display.php",dirname(__FILE__)));
 	}
 	/*
 	* register our settings
 	*/
 	function register_settings() {
-		register_setting( 'wen-map-marker-settings-group', 'wen_map_maker_post_type' );
+		register_setting( 'wen-map-marker-settings-group', 'wen_map_marker_post_type' );
 	}
 
 }

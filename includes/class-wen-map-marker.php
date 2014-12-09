@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    wen_map_maker
- * @subpackage wen_map_maker/includes
+ * @package    wen_map_marker
+ * @subpackage wen_map_marker/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    wen_map_maker
- * @subpackage wen_map_maker/includes
+ * @package    wen_map_marker
+ * @subpackage wen_map_marker/includes
  * @author     Your Name <email@example.com>
  */
-class wen_map_maker {
+class wen_map_marker {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class wen_map_maker {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      wen_map_maker_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      wen_map_marker_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -44,9 +44,9 @@ class wen_map_maker {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $wen_map_maker    The string used to uniquely identify this plugin.
+	 * @var      string    $wen_map_marker    The string used to uniquely identify this plugin.
 	 */
-	protected $wen_map_maker;
+	protected $wen_map_marker;
 
 	/**
 	 * The current version of the plugin.
@@ -68,7 +68,7 @@ class wen_map_maker {
 	 */
 	public function __construct() {
 
-		$this->wen_map_maker = 'wen-map-maker';
+		$this->wen_map_marker = 'wen-map-marker';
 		$this->version = '1.0.0';
 
 		$this->load_dependencies();
@@ -83,10 +83,10 @@ class wen_map_maker {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - wen_map_maker_Loader. Orchestrates the hooks of the plugin.
-	 * - wen_map_maker_i18n. Defines internationalization functionality.
-	 * - wen_map_maker_Admin. Defines all hooks for the dashboard.
-	 * - wen_map_maker_Public. Defines all hooks for the public side of the site.
+	 * - wen_map_marker_Loader. Orchestrates the hooks of the plugin.
+	 * - wen_map_marker_i18n. Defines internationalization functionality.
+	 * - wen_map_marker_Admin. Defines all hooks for the dashboard.
+	 * - wen_map_marker_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -106,33 +106,33 @@ class wen_map_maker {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wen-map-maker-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wen-map-marker-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wen-map-maker-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wen-map-marker-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the Dashboard.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wen-map-maker-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wen-map-marker-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wen-map-maker-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wen-map-marker-public.php';
 
-		$this->loader = new wen_map_maker_Loader();
+		$this->loader = new wen_map_marker_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the wen_map_maker_i18n class in order to set the domain and to register the hook
+	 * Uses the wen_map_marker_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -140,8 +140,8 @@ class wen_map_maker {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new wen_map_maker_i18n();
-		$plugin_i18n->set_domain( $this->get_wen_map_maker() );
+		$plugin_i18n = new wen_map_marker_i18n();
+		$plugin_i18n->set_domain( $this->get_wen_map_marker() );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -156,7 +156,7 @@ class wen_map_maker {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new wen_map_maker_Admin( $this->get_wen_map_maker(), $this->get_version() );
+		$plugin_admin = new wen_map_marker_Admin( $this->get_wen_map_marker(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'setup_menu' );
 		$this->loader->add_action( 'admin_head', $plugin_admin, 'admin_head' );
@@ -176,7 +176,7 @@ class wen_map_maker {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new wen_map_maker_Public( $this->get_wen_map_maker(), $this->get_version() );
+		$plugin_public = new wen_map_marker_Public( $this->get_wen_map_marker(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -201,15 +201,15 @@ class wen_map_maker {
 	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_wen_map_maker() {
-		return $this->wen_map_maker;
+	public function get_wen_map_marker() {
+		return $this->wen_map_marker;
 	}
 
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    wen_map_maker_Loader    Orchestrates the hooks of the plugin.
+	 * @return    wen_map_marker_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

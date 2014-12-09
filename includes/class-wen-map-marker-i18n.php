@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    wen_map_maker
- * @subpackage wen_map_maker/includes
+ * @package    wen_map_marker
+ * @subpackage wen_map_marker/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    wen_map_maker
- * @subpackage wen_map_maker/includes
+ * @package    wen_map_marker
+ * @subpackage wen_map_marker/includes
  * @author     Your Name <email@example.com>
  */
-class wen_map_maker_i18n {
+class wen_map_marker_i18n {
 
 	/**
 	 * The domain specified for this plugin.
