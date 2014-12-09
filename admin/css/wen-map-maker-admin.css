@@ -22,8 +22,23 @@
 	right: 0;
 	opacity: .5;
 }
-.wen-map-marker-wrapper .wen-map-marker-locate-user:hover{
+.wen-map-marker-wrapper .wen-map-marker-locate-user:hover, .wen-map-marker-wrapper .clear-marker:hover{
 	opacity: 1;
+	outline: none;
+}
+.wen-map-marker-wrapper .clear-marker{
+	background: url("../images/marker_rounded_remove.png") no-repeat scroll 0% 0% transparent;
+	font-size: 0px;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: absolute;
+	top: 11px;
+	right: 21px;
+	opacity: .5;
+	margin-right: 10px;
+	outline: none;
+	border: 0;
 }
 .wen-map-marker-wrapper input[type="text"] {
 	width: 100%;

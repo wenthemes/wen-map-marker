@@ -1,10 +1,12 @@
 (function($) {
     var jMapifyId = 0;
+    $.jMapify = {};
     $.fn.jMapify = function(options) {
         return this.each(function(index) {
             var goMapBase = $.extend(true, {}, $.jMapifyBase);
             goMapBase.init(this, options);
             jMapifyId++;
+            $.jMapify = goMapBase;
         });
     };
     // extend jquery object
@@ -46,6 +48,7 @@
             this.drawMap(args);
             this.showMarker(args);
             this.draggable(args);
+            return this;
         },
         drawMap: function(args) {
             $(args.el).wrap("<div id='jMapify-"+jMapifyId+"' class='jMapify' style='position:relative'></div>").height(args.settings.height).width(args.settings.width);
@@ -126,6 +129,7 @@
             var jMapify = this;
             var $marker = this.marker;
             var $map = this.map;
+            this.marker.setVisible(true);
             var latlng = new google.maps.LatLng(location.lat, location.lng);
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode({
@@ -245,6 +249,9 @@
                   });
               }
           }
+      },
+      removeMarker: function(){
+        this.marker.setVisible(false);
       }
     }; // end extend
 })(jQuery); // return jquery object

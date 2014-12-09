@@ -16,7 +16,7 @@
 class jquery_mapify_helper {
 
 	
-	public function create( $new_settings = array() ){
+	public function create( $new_settings = array(),$canvas_id = NULL, $show_canvas=true ){
 		$default_settings = array(
 			'width' => '100%',
             'height' => '500',
@@ -39,18 +39,27 @@ class jquery_mapify_helper {
 			'geoLocationButton' => null,
 			'searchInput' => null
 		);
-		
+		if(isset($new_settings['afterMarkerDrag'])){
+			$afterMarkerDrag = $new_settings['afterMarkerDrag'];
+			unset($new_settings['afterMarkerDrag']);
+		}
+		$canvas_name = ($canvas_id==NULL)?'wen_map_marker_options_'.rand():str_replace("-","_",$canvas_id);
+		$canvas_id = ($canvas_id==NULL)?'wen_map_marker_options_'.rand():$canvas_id;
 		$merged_settings = array_merge( $default_settings, $new_settings );
-		$rand = rand();
+
 		$script = '<script type="text/javascript">'."\n";
+		$script .= 'var '.$canvas_name.'=null;'."\n";
 		$script .= 'jQuery(function($){'."\n";
-		$script .='var _wen_map_marker_options_'.$rand.'='.json_encode($merged_settings).';'."\n";
-		$script .= '$("#wen-map-marker-canvas_'.$rand.'").jMapify(_wen_map_marker_options_'.$rand.');'."\n";
+		$script .=''.$canvas_name.'='.json_encode($merged_settings).';'."\n";
+		if(isset($afterMarkerDrag)){
+			$script .=''.$canvas_name.'.afterMarkerDrag='.$afterMarkerDrag.';'."\n";
+		}
+		$script .= $canvas_name.'=$("#'.$canvas_id.'").jMapify('.$canvas_name.');'."\n";
 		$script .= ' });'."\n";
 		$script .= '</script>';
 
-		$map = '<div id="wen-map-marker-canvas_'.$rand.'"></div>';
+		$map = '<div id="'.$canvas_id.'"></div>';
 
-		return $script.$map;
+		return ($show_canvas)?$script.$map:$script;
 	}
 }

@@ -109,7 +109,7 @@ class wen_map_maker_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function map_shortcode($atts){
+	public function map_shortcode($atts=array()){
 		$jquery_mapify_helper = new jquery_mapify_helper();
 
 		$atts = shortcode_atts( array(
@@ -119,11 +119,13 @@ class wen_map_maker_Public {
 			'showMarker' => true,
 			'width' => '100%',
 			'height' => '500',
+			'zoom' => 15,
 		), $atts, 'WMM' );
 
 		$args['showMarker'] = $atts['showMarker'];
 		$args['width'] = $atts['width'];
 		$args['height'] = $atts['height'];
+		$args['zoom'] = (int) $atts['zoom'];
 
 		// In case lat and lng is passed in shortcode
 		if(NULL != $atts['lat'] and NULL != $atts['lng'] ){
@@ -145,10 +147,34 @@ class wen_map_maker_Public {
 			$wen_map_marker_lat = get_post_meta( $post->ID, "wen_map_marker_lat",true );
 			$wen_map_marker_lng = get_post_meta( $post->ID, "wen_map_marker_lng",true );
 
+			if('' == $wen_map_marker_lat || '' == $wen_map_marker_lng)
+				return false;
 			$args['lat'] = $wen_map_marker_lat;
 			$args['lng'] = $wen_map_marker_lng;
 		}
 		
 		return $jquery_mapify_helper->create($args);
 	}
+
+	/**
+	 * Append map to post content
+	 *
+	 * @since    1.0.0
+	 */
+	public function append_map($content){
+		if ( !is_singular() )
+			return $content;
+
+		global $post;
+		$wen_map_marker_content_append = get_post_meta( $post->ID, 'wen_map_marker_content_append', true );
+		
+		if(''==$wen_map_marker_content_append)
+			return $content;
+		$map_output = $this->map_shortcode();
+		if( 'before_content' == $wen_map_marker_content_append)
+			return $map_output.$content;
+		if( 'after_content' == $wen_map_marker_content_append)
+			return $content.$map_output;
+	}
+
 }

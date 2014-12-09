@@ -130,14 +130,25 @@ class wen_map_maker_Admin {
 		wp_nonce_field( 'my_wpshed_meta_box_nonce', 'wen_map_marker_meta_box_nonce' ); ?>
 		<div class="wen-map-marker-wrapper">
 			<div class="wen-map-marker-search-bar">
+				<a href="javascript:void(0);" class="clear-marker" title="Clear location">Clear marker</a>
 				<a href="#" class="wen-map-marker-locate-user" title="Find current location">Locate User</a>
 				<input type="text" id="wen-map-marker-search"  value="<?php echo $this->get_custom_field_value("wen_map_marker_address");?>"/>
 			</div>
 			<div id="wen-map-marker-canvas"></div>
-			<input type="text" id="wen-map-marker-address" name="wen_map_marker_address" value="<?php echo $this->get_custom_field_value("wen_map_marker_address");?>" />
-			<input type="text" id="wen-map-marker-lat" name="wen_map_marker_lat" value="<?php echo $this->get_custom_field_value("wen_map_marker_lat");?>" />
-			<input type="text" id="wen-map-marker-lng" name="wen_map_marker_lng"  value="<?php echo $this->get_custom_field_value("wen_map_marker_lng");?>" />
+			<input type="hidden" id="wen-map-marker-address" name="wen_map_marker_address" value="<?php echo $this->get_custom_field_value("wen_map_marker_address");?>" />
+			<input type="hidden" id="wen-map-marker-lat" name="wen_map_marker_lat" value="<?php echo $this->get_custom_field_value("wen_map_marker_lat");?>" />
+			<input type="hidden" id="wen-map-marker-lng" name="wen_map_marker_lng"  value="<?php echo $this->get_custom_field_value("wen_map_marker_lng");?>" />
 	    </div>
+	    <p>
+			<label for="wen_map_marker_content_append"><strong>Show Map</strong></label>
+			<?php $wen_map_marker_content_append = $this->get_custom_field_value("wen_map_marker_content_append");?>
+			<select name="wen_map_marker_content_append" id="wen_map_marker_content_append">
+				<option value="">Select Option</option>
+				<option value="before_content" <?php echo ($wen_map_marker_content_append=="before_content")?"selected":"";?>>Before Content</option>
+				<option value="after_content" <?php echo ($wen_map_marker_content_append=="after_content")?"selected":"";?>>After Content</option>
+			</select>
+			<label for=""><strong>OR</strong> Use Shortcode <code>[WMM]</code> in editor.</label>
+		</p>
 		<?php
 	}
 
@@ -182,6 +193,10 @@ class wen_map_maker_Admin {
 		// Save the textarea
 		if( isset( $_POST['wen_map_marker_lng'] ) )
 			update_post_meta( $post_id, 'wen_map_marker_lng', esc_attr( $_POST['wen_map_marker_lng'] ) );
+
+		// Save the textarea
+		if( isset( $_POST['wen_map_marker_content_append'] ) )
+			update_post_meta( $post_id, 'wen_map_marker_content_append', esc_attr( $_POST['wen_map_marker_content_append'] ) );
 	}
 
 	/**
@@ -197,85 +212,57 @@ class wen_map_maker_Admin {
 		if(is_array($wen_map_maker_post_type) and !in_array($screen->id,$wen_map_maker_post_type))
 			return;
 
-		$script = '<script type="text/javascript">'."\n";
-		$script .= 'jQuery(function($){'."\n";
+		$map_options = array( 'showMarker' => false,
+				'showMarkerOnClick' => true,
+				'markerOptions' => array(
+					'draggable' => true
+				),
+				'autoLocate' => false,
+				'geoLocationButton' => ".wen-map-marker-locate-user",
+				'searchInput' => "#wen-map-marker-search",
+				'afterMarkerDrag' => 'function(response){
+					// console.log(this);
+					$("#wen-map-marker-lat").val(response.lat);$("#wen-map-marker-lng").val(response.lng);$("#wen-map-marker-address").val(response.address);$("#wen-map-marker-search").val(response.address);}'
+			);
+
+		$jquery_mapify_helper = new jquery_mapify_helper();
 
 		if(isset($_GET['action'])){
 
 			global $post;
+			
 
 			$wen_map_marker_lat = $this->get_custom_field_value("wen_map_marker_lat");
 			$wen_map_marker_lng = $this->get_custom_field_value("wen_map_marker_lng");
 
+
 			if($wen_map_marker_lat != "" and $wen_map_marker_lng != "" ){
-				$script .='var _wen_map_marker_options={
-					lat:'.$wen_map_marker_lat.',
-					lng:'.$wen_map_marker_lng.',
-					showMarker:true,
-					showMarkerOnClick:true,
-					markerOptions:{
-						draggable:true
-					},
-					autoLocate:false,
-					geoLocationButton:".wen-map-marker-locate-user",
-					searchInput:"#wen-map-marker-search",
-					afterMarkerDrag:function(response){
-						console.log(response);
-						$("#wen-map-marker-lat").val(response.lat);
-						$("#wen-map-marker-lng").val(response.lng);
-						$("#wen-map-marker-address").val(response.address);
-						$("#wen-map-marker-search").val(response.address);
-					}
-				};'."\n";
+				$map_options['showMarker'] = true;
+				$map_options['lat'] = $wen_map_marker_lat;
+				$map_options['lng'] = $wen_map_marker_lng;
+				echo $jquery_mapify_helper->create( $map_options, 'wen-map-marker-canvas', false);
 	        }
 	        else{
 
-	        	$script .='var _wen_map_marker_options={
-					showMarker:false,
-					showMarkerOnClick:true,
-					markerOptions:{
-						draggable:true
-					},
-					autoLocate:false,
-					geoLocationButton:".wen-map-marker-locate-user",
-					searchInput:"#wen-map-marker-search",
-					afterMarkerDrag:function(response){
-						console.log(response);
-						$("#wen-map-marker-lat").val(response.lat);
-						$("#wen-map-marker-lng").val(response.lng);
-						$("#wen-map-marker-address").val(response.address);
-						$("#wen-map-marker-search").val(response.address);
-					}
-				};'."\n"."\n";
-
+				echo $jquery_mapify_helper->create( $map_options, 'wen-map-marker-canvas', false);
 	        }
 
 		}
 		else{
-
-			$script .='var _wen_map_marker_options={
-				showMarker:false,
-				showMarkerOnClick:true,
-				markerOptions:{
-					draggable:true
-				},
-				autoLocate:false,
-				geoLocationButton:".wen-map-marker-locate-user",
-				searchInput:"#wen-map-marker-search",
-				afterMarkerDrag:function(response){
-					console.log(response);
-					$("#wen-map-marker-lat").val(response.lat);
-					$("#wen-map-marker-lng").val(response.lng);
-					$("#wen-map-marker-address").val(response.address);
-					$("#wen-map-marker-search").val(response.address);
-				}
-			};'."\n";
-
+			echo $jquery_mapify_helper->create( $map_options, 'wen-map-marker-canvas', false);
 		}
-		$script .= '$("#wen-map-marker-canvas").jMapify(_wen_map_marker_options);'."\n";
-		$script .= ' });'."\n";
-		$script .= '</script>';
-		echo $script;
+
+		echo '<script>
+		jQuery(function($){
+			// console.log($.jMapify);
+			$(".clear-marker").click(function(){
+				$.jMapify.removeMarker();
+				$("#wen-map-marker-lat").val("");
+				$("#wen-map-marker-lng").val("");
+				$("#wen-map-marker-address").val("");
+				$("#wen-map-marker-search").val("");
+			});
+		});</script>';
 		
 	}
 

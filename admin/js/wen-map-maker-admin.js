@@ -3,7 +3,6 @@
 
 	$(function(){
 		
-
 		$(".wen-map-marker-locate-user").click(function(){
 			return false;
 		});
@@ -27,7 +26,7 @@
         $("#wen-map-marker-lng-custom").val(response.lng);
         $("#wen-map-marker-address-custom").val(response.address);
         $("#wen-map-marker-search-custom").val(response.address);
-        $("#wen-map-marker-shortcode-custom").val('[WMM lat="'+response.lat+'" lng="'+response.lng+'"]');
+        $("#wen-map-marker-shortcode-custom").val('[WMM lat="'+response.lat+'" lng="'+response.lng+'" zoom="15"]');
       }
     });
 
