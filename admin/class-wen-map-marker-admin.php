@@ -72,6 +72,11 @@ class wen_map_marker_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		$screen = get_current_screen();
+		$wen_map_marker_settings = get_option('wen_map_marker_settings');
+		$wen_map_marker_settings['post_types'][] = 'toplevel_page_wen-map-marker';
+		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
+			return;
 
 		wp_enqueue_style( $this->wen_map_marker, plugin_dir_url( __FILE__ ) . 'css/wen-map-marker-admin.css', array(), $this->version, 'all' );
 
@@ -95,7 +100,12 @@ class wen_map_marker_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		
+
+		$screen = get_current_screen();
+		$wen_map_marker_settings = get_option('wen_map_marker_settings');
+		$wen_map_marker_settings['post_types'][] = 'toplevel_page_wen-map-marker';
+		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
+			return;
 
 		// wp_enqueue_script( 'jquery-jMapify', plugin_dir_url( __FILE__ ) . 'js/jquery.jMapify.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'google-map-api', 'http://maps.google.com/maps/api/js?sensor=false&libraries=places', array( 'jquery' ), $this->version );
@@ -330,4 +340,125 @@ class wen_map_marker_Admin {
 		array_unshift($links, $settings_link);
 		return $links;
 	}
+
+	/**
+	 * Init the tinymce button
+	 *
+	 * @since    1.0.0
+	 */
+	function tinymce_button_init() {
+
+	     if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
+	          add_filter( 'mce_buttons', array(&$this,'register_tinymce_button' ));
+	          add_filter( 'tiny_mce_before_init', array(&$this,'add_tinymce_button' ));
+	     }
+	}
+
+	/**
+	 * Register tinymce button
+	 *
+	 * @since    1.0.0
+	 */
+	function register_tinymce_button( $buttons ) {
+
+		$screen = get_current_screen();
+		$wen_map_marker_settings = get_option('wen_map_marker_settings');
+		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
+			return $buttons;
+
+		array_push( $buttons, '|', 'WEN' );
+			return $buttons;
+
+	}
+
+	/**
+	 * Add tinymce button callback function
+	 *
+	 * @since    1.0.0
+	 */
+	function add_tinymce_button( $initArray ) 
+	{
+		$icon_path = plugin_dir_url( __FILE__ ) . 'images/map_button.png';
+		$title = __("Add WEN Map Marker Shortcode","wen-map-marker");
+      $initArray['setup'] = <<<JS
+[function(ed) {
+    ed.addButton('WEN', {
+        title : '$title',
+        image : '$icon_path',
+        onclick : function() {
+           var width = jQuery(window).width(), H = jQuery(window).height(), W = ( 720 < width ) ? 720 : width;
+     W = W - 80;
+     H = H - 84;
+     tb_show( '$title', '#TB_inline?width=' + W + '&height=' + H + '&inlineId=WMM-popup-form' );
+        }
+    });
+}][0]
+JS;
+    return $initArray;
+
+    }
+
+	/**
+	 * Add Popup for the editor button.
+	 *
+	 * @since    1.0.0
+	 */
+	function tinymce_popup($links)
+	{
+		$screen = get_current_screen();
+		$wen_map_marker_settings = get_option('wen_map_marker_settings');
+		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
+			return;
+	  ?>
+	  <div id="WMM-popup-form" style="display:none">
+	    <div>
+	    <p>
+	      <label for="wmm-zoom"><strong><?php _e("Enter zoom","wen-map-marker");?></strong></label>
+	      <input type="text" name="wmm-zoom" id="wmm-zoom" value="15" />
+	    </p>
+	      <!-- <p class="submit">
+	        <input type="button" id="WMM-submit" class="button-primary" value="Insert" name="submit" />
+	      </p> -->
+	      <?php			submit_button( __('Insert', 'wen-map-marker'), 'primary', 'submit', true, array( 'id' => 'WMM-submit' ) );			?>
+
+	    </div>
+	  </div><!-- #WMM-popup-form -->
+	      <script type="text/javascript">
+
+	      jQuery(document).ready(function($){
+	        $('#WMM-submit').click(function(e){
+	          e.preventDefault();
+
+	          var wmm_zoom = $('#wmm-zoom').val();
+
+	          if('' == wmm_zoom){
+	            $('#wmm-zoom').addClass('error');
+	            return false;
+	          }
+	          else if( parseInt(wmm_zoom) != wmm_zoom ){
+	            $('#wmm-zoom').addClass('error');
+	            return false;
+	          }
+	          else {
+	            $('#wmm-zoom').removeClass('error');
+	            var shortcode = '[WMM';
+	            shortcode += ' zoom="'+wmm_zoom+'"';
+	            shortcode += ']';
+	            // inserts the shortcode into the active editor
+	            tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcode);
+
+	            // closes Thickbox
+	            tb_remove();
+	          }
+
+
+	        });
+	      });
+
+
+	         </script>
+	  <?php
+
+	}
+
 }
