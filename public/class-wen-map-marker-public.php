@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    wen_map_marker
- * @subpackage wen_map_marker/public
+ * @package    WEN_Map_Marker
+ * @subpackage WEN_Map_Marker/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the dashboard-specific stylesheet and JavaScript.
  *
- * @package    wen_map_marker
- * @subpackage wen_map_marker/public
+ * @package    WEN_Map_Marker
+ * @subpackage WEN_Map_Marker/public
  * @author     Your Name <email@example.com>
  */
-class wen_map_marker_Public {
+class WEN_Map_Marker_Public {
 
 	/**
 	 * The ID of this plugin.

@@ -9,8 +9,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    wen_map_marker
- * @subpackage wen_map_marker/includes
+ * @package    WEN_Map_Marker
+ * @subpackage WEN_Map_Marker/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    wen_map_marker
- * @subpackage wen_map_marker/includes
+ * @package    WEN_Map_Marker
+ * @subpackage WEN_Map_Marker/includes
  * @author     Your Name <email@example.com>
  */
-class wen_map_marker {
+class WEN_Map_Marker {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class wen_map_marker {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      wen_map_marker_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      WEN_Map_Marker_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -83,10 +83,10 @@ class wen_map_marker {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - wen_map_marker_Loader. Orchestrates the hooks of the plugin.
-	 * - wen_map_marker_i18n. Defines internationalization functionality.
-	 * - wen_map_marker_Admin. Defines all hooks for the dashboard.
-	 * - wen_map_marker_Public. Defines all hooks for the public side of the site.
+	 * - WEN_Map_Marker_Loader. Orchestrates the hooks of the plugin.
+	 * - WEN_Map_Marker_i18n. Defines internationalization functionality.
+	 * - WEN_Map_Marker_Admin. Defines all hooks for the dashboard.
+	 * - WEN_Map_Marker_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -125,14 +125,14 @@ class wen_map_marker {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wen-map-marker-public.php';
 
-		$this->loader = new wen_map_marker_Loader();
+		$this->loader = new WEN_Map_Marker_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the wen_map_marker_i18n class in order to set the domain and to register the hook
+	 * Uses the WEN_Map_Marker_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -140,7 +140,7 @@ class wen_map_marker {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new wen_map_marker_i18n();
+		$plugin_i18n = new WEN_Map_Marker_i18n();
 		$plugin_i18n->set_domain( $this->get_wen_map_marker() );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
@@ -155,7 +155,7 @@ class wen_map_marker {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-		$plugin_admin = new wen_map_marker_Admin( $this->get_wen_map_marker(), $this->get_version() );
+		$plugin_admin = new WEN_Map_Marker_Admin( $this->get_wen_map_marker(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'setup_menu' );
 		$this->loader->add_action( 'admin_head', $plugin_admin, 'admin_head' );
@@ -178,7 +178,7 @@ class wen_map_marker {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new wen_map_marker_Public( $this->get_wen_map_marker(), $this->get_version() );
+		$plugin_public = new WEN_Map_Marker_Public( $this->get_wen_map_marker(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -214,7 +214,7 @@ class wen_map_marker {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    wen_map_marker_Loader    Orchestrates the hooks of the plugin.
+	 * @return    WEN_Map_Marker_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

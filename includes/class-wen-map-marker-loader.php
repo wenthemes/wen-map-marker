@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    wen_map_marker
- * @subpackage wen_map_marker/includes
+ * @package    WEN_Map_Marker
+ * @subpackage WEN_Map_Marker/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    wen_map_marker
- * @subpackage wen_map_marker/includes
+ * @package    WEN_Map_Marker
+ * @subpackage WEN_Map_Marker/includes
  * @author     Your Name <email@example.com>
  */
-class wen_map_marker_Loader {
+class WEN_Map_Marker_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.
