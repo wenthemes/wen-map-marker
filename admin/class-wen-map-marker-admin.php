@@ -61,17 +61,6 @@ class wen_map_marker_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in wen_map_marker_Admin_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The wen_map_marker_Admin_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
 		$wen_map_marker_settings['post_types'][] = 'toplevel_page_wen-map-marker';
@@ -89,25 +78,12 @@ class wen_map_marker_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in wen_map_marker_Admin_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The wen_map_marker_Admin_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
 		$wen_map_marker_settings['post_types'][] = 'toplevel_page_wen-map-marker';
 		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
 			return;
 
-		// wp_enqueue_script( 'jquery-jMapify', plugin_dir_url( __FILE__ ) . 'js/jquery.jMapify.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'google-map-api', 'http://maps.google.com/maps/api/js?sensor=false&libraries=places', array( 'jquery' ), $this->version );
 		wp_enqueue_script( 'jquery-jMapify', plugin_dir_url(__FILE__) . '../public/js/jquery.jMapify.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( $this->wen_map_marker, plugin_dir_url( __FILE__ ) . 'js/wen-map-marker-admin.js', array( 'jquery' ), $this->version, false );
@@ -229,14 +205,13 @@ class wen_map_marker_Admin {
 
 		$map_options = array( 'showMarker' => false,
 				'showMarkerOnClick' => true,
-				'markerOptions' => array(
+				'markerOptions'     => array(
 					'draggable' => true
 				),
-				'autoLocate' => false,
+				'autoLocate'        => false,
 				'geoLocationButton' => ".wen-map-marker-locate-user",
-				'searchInput' => "#wen-map-marker-search",
-				'afterMarkerDrag' => 'function(response){
-					// console.log(this);
+				'searchInput'       => "#wen-map-marker-search",
+				'afterMarkerDrag'   => 'function(response){
 					$("#wen-map-marker-lat").val(response.lat);$("#wen-map-marker-lng").val(response.lng);$("#wen-map-marker-address").val(response.address);$("#wen-map-marker-search").val(response.address);}'
 			);
 
@@ -253,8 +228,8 @@ class wen_map_marker_Admin {
 
 			if($wen_map_marker_lat != "" and $wen_map_marker_lng != "" ){
 				$map_options['showMarker'] = true;
-				$map_options['lat'] = $wen_map_marker_lat;
-				$map_options['lng'] = $wen_map_marker_lng;
+				$map_options['lat']        = $wen_map_marker_lat;
+				$map_options['lng']        = $wen_map_marker_lng;
 				echo $jquery_mapify_helper->create( $map_options, 'wen-map-marker-canvas', false);
 	        }
 	        else{
@@ -269,7 +244,6 @@ class wen_map_marker_Admin {
 
 		echo '<script>
 		jQuery(function($){
-			// console.log($.jMapify);
 			$(".clear-marker").click(function(){
 				$.jMapify.removeMarker();
 				$("#wen-map-marker-lat").val("");

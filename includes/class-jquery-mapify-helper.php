@@ -4,7 +4,6 @@
  * The file that helps to create map output
  *
  * A class definition that includes function that creates map
- * public-facing side of the site and the dashboard.
  *
  * @link       http://example.com
  * @since      1.0.0
@@ -15,29 +14,29 @@
 
 class jquery_mapify_helper {
 
-	
+
 	public function create( $new_settings = array(),$canvas_id = NULL, $show_canvas=true ){
 		$default_settings = array(
-			'width' => '100%',
-            'height' => '500',
-			'lat' => 27.7000,
-            'lng' => 85.3333,
-			'zoom' => 15,
-			'type' => 'ROADMAP',
-			'draggable' => true,
-			'zoomControl' => true,
-			'scrollwheel' => true,
+			'width'                  => '100%',
+			'height'                 => '500',
+			'lat'                    => 27.7000,
+			'lng'                    => 85.3333,
+			'zoom'                   => 15,
+			'type'                   => 'ROADMAP',
+			'draggable'              => true,
+			'zoomControl'            => true,
+			'scrollwheel'            => true,
 			'disableDoubleClickZoom' => false,
-			'showMarker' => false,
-			'showMarkerOnClick' =>false,
-			'markerOptions' => array(
-				'draggable' => false,
+			'showMarker'             => false,
+			'showMarkerOnClick'      =>false,
+			'markerOptions'          => array(
+				'draggable'   => false,
 				'raiseOnDrag' => false
 			),
 			// 'afterMarkerDrag' => function() {},
-			'autoLocate' => false,
+			'autoLocate'        => false,
 			'geoLocationButton' => null,
-			'searchInput' => null
+			'searchInput'       => null
 		);
 		if(isset($new_settings['afterMarkerDrag'])){
 			$afterMarkerDrag = $new_settings['afterMarkerDrag'];
