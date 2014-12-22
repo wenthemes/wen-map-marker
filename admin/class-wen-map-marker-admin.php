@@ -172,7 +172,7 @@ class WEN_Map_Marker_Admin {
 		if( !isset( $_POST['wen_map_marker_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['wen_map_marker_meta_box_nonce'], 'wen_map_marker_meta_box_nonce' ) ) return;
 
 		// Stop the script if the user does not have edit permissions
-		if( !current_user_can( 'edit_post' ) ) return;
+		if( ! current_user_can( 'edit_post', $post_id ) ) return;
 
 	    // Save the textfield
 		if( isset( $_POST['wen_map_marker_address'] ) )
