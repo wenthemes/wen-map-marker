@@ -3,7 +3,7 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       http://example.com
+ * @link       http://webexpertsnepal.com
  * @since      1.0.0
  *
  * @package    WEN_Map_Marker

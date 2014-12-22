@@ -3,7 +3,7 @@
 /**
  * Fired when the plugin is uninstalled.
  *
- * @link       http://example.com
+ * @link       http://webexpertsnepal.com
  * @since      1.0.0
  *
  * @package    wen_map_marker
