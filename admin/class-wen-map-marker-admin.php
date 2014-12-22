@@ -18,7 +18,7 @@
  *
  * @package    WEN_Map_Marker
  * @subpackage WEN_Map_Marker/admin
- * @author     Your Name <email@example.com>
+ * @author     Web Experts Nepal <info@webexpertsnepal.com>
  */
 class WEN_Map_Marker_Admin {
 
