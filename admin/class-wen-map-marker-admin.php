@@ -282,7 +282,7 @@ class wen_map_marker_Admin {
 	}
 
 	function setup_menu(){
-	    add_menu_page( __('WEN Map Marker',"wen-map-marker"), __('WEN Options',"wen-map-marker"), 'manage_options', 'wen-map-marker', array(&$this,'option_page_init') );
+	    add_menu_page( __('WEN Map Marker',"wen-map-marker"), __('WEN Map Marker',"wen-map-marker"), 'manage_options', 'wen-map-marker', array(&$this,'option_page_init') );
 	    add_action( 'admin_init', array(&$this,'register_settings' ));
 	}
 
@@ -421,10 +421,9 @@ JS;
 	      <label for="wmm-zoom"><strong><?php _e("Enter zoom","wen-map-marker");?></strong></label>
 	      <input type="text" name="wmm-zoom" id="wmm-zoom" value="15" />
 	    </p>
-	      <!-- <p class="submit">
-	        <input type="button" id="WMM-submit" class="button-primary" value="Insert" name="submit" />
-	      </p> -->
-	      <?php			submit_button( __('Insert', 'wen-map-marker'), 'primary', 'submit', true, array( 'id' => 'WMM-submit' ) );			?>
+	      <?php
+	      	submit_button( __('Insert', 'wen-map-marker'), 'primary', 'submit', true, array( 'id' => 'WMM-submit' ) );
+      	?>
 
 	    </div>
 	  </div><!-- #WMM-popup-form -->

@@ -61,18 +61,6 @@ class wen_map_marker_Public {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in wen_map_marker_Public_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The wen_map_marker_Public_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->wen_map_marker, plugin_dir_url( __FILE__ ) . 'css/wen-map-marker-public.css', array(), $this->version, 'all' );
 
 	}
@@ -84,23 +72,12 @@ class wen_map_marker_Public {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in wen_map_marker_Public_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The wen_map_marker_Public_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
 		if(is_admin())
 			return;
 		wp_enqueue_script( 'google-map-api', 'http://maps.google.com/maps/api/js?sensor=false', array( 'jquery' ), $this->version );
 		wp_enqueue_script( 'jquery-jMapify', plugin_dir_url( __FILE__ ) . 'js/jquery.jMapify.js', array( 'jquery' ), $this->version, false );
 
-		wp_enqueue_script( $this->wen_map_marker, plugin_dir_url( __FILE__ ) . 'js/wen-map-marker-public.js', array( 'jquery' ), $this->version, false );		
+		wp_enqueue_script( $this->wen_map_marker, plugin_dir_url( __FILE__ ) . 'js/wen-map-marker-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -113,19 +90,19 @@ class wen_map_marker_Public {
 		$jquery_mapify_helper = new jquery_mapify_helper();
 
 		$atts = shortcode_atts( array(
-			'post_id' => NULL,
-			'lat' => NULL,
-			'lng' => NULL,
+			'post_id'    => NULL,
+			'lat'        => NULL,
+			'lng'        => NULL,
 			'showMarker' => true,
-			'width' => '100%',
-			'height' => '500',
-			'zoom' => 15,
+			'width'      => '100%',
+			'height'     => '500',
+			'zoom'       => 15,
 		), $atts, 'WMM' );
 
 		$args['showMarker'] = $atts['showMarker'];
-		$args['width'] = $atts['width'];
-		$args['height'] = $atts['height'];
-		$args['zoom'] = (int) $atts['zoom'];
+		$args['width']      = $atts['width'];
+		$args['height']     = $atts['height'];
+		$args['zoom']       = (int) $atts['zoom'];
 
 		// In case lat and lng is passed in shortcode
 		if(NULL != $atts['lat'] and NULL != $atts['lng'] ){
@@ -152,7 +129,7 @@ class wen_map_marker_Public {
 			$args['lat'] = $wen_map_marker_lat;
 			$args['lng'] = $wen_map_marker_lng;
 		}
-		
+
 		return $jquery_mapify_helper->create($args);
 	}
 
@@ -162,19 +139,19 @@ class wen_map_marker_Public {
 	 * @since    1.0.0
 	 */
 	public function append_map($content){
-		if ( !is_singular() )
+		if ( ! is_singular() )
 			return $content;
 
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
-		
+
 		global $post;
 
 		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($post->post_type,$wen_map_marker_settings['post_types']))
 			return $content;
 
 		$wen_map_marker_content_append = get_post_meta( $post->ID, 'wen_map_marker_content_append', true );
-		
-		if(''==$wen_map_marker_content_append)
+
+		if( '' == $wen_map_marker_content_append )
 			return $content;
 		$map_output = $this->map_shortcode();
 		if( 'before_content' == $wen_map_marker_content_append)
