@@ -120,7 +120,7 @@ class wen_map_marker_Admin {
 	 * @since    1.0.0
 	 */
 	public function add_meta_boxes() {
-		 
+
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
 		if( isset($wen_map_marker_settings['post_types']) and  !empty( $wen_map_marker_settings['post_types'])){
 			foreach ($wen_map_marker_settings['post_types'] as $key => $postType) {
@@ -141,8 +141,8 @@ class wen_map_marker_Admin {
 		wp_nonce_field( 'wen_map_marker_meta_box_nonce', 'wen_map_marker_meta_box_nonce' ); ?>
 		<div class="wen-map-marker-wrapper">
 			<div class="wen-map-marker-search-bar">
-				<a href="javascript:void(0);" class="clear-marker" title="Clear location">Clear marker</a>
-				<a href="#" class="wen-map-marker-locate-user" title="Find current location">Locate User</a>
+				<a href="javascript:void(0);" class="clear-marker" title="<?php echo esc_attr( __( 'Clear location', 'wen-map-marker' ) ); ?>"><?php _e( 'Clear marker', 'wen-map-marker' ); ?></a>
+				<a href="#" class="wen-map-marker-locate-user" title="<?php echo esc_attr( __( 'Find current location', 'wen-map-marker' ) ); ?>"><?php _e( 'Locate User', 'wen-map-marker' ); ?></a>
 				<input type="text" id="wen-map-marker-search"  value="<?php echo $this->get_custom_field_value("wen_map_marker_address");?>"/>
 			</div>
 			<div id="wen-map-marker-canvas"></div>
@@ -151,14 +151,19 @@ class wen_map_marker_Admin {
 			<input type="hidden" id="wen-map-marker-lng" name="wen_map_marker_lng"  value="<?php echo $this->get_custom_field_value("wen_map_marker_lng");?>" />
 	    </div>
 	    <p>
-			<label for="wen_map_marker_content_append"><strong>Show Map</strong></label>
+			<label for="wen_map_marker_content_append"><strong><?php _e( 'Show Map', 'wen-map-marker' ); ?></strong></label>
 			<?php $wen_map_marker_content_append = $this->get_custom_field_value("wen_map_marker_content_append");?>
 			<select name="wen_map_marker_content_append" id="wen_map_marker_content_append">
-				<option value="">Select Option</option>
-				<option value="before_content" <?php echo ($wen_map_marker_content_append=="before_content")?"selected":"";?>>Before Content</option>
-				<option value="after_content" <?php echo ($wen_map_marker_content_append=="after_content")?"selected":"";?>>After Content</option>
+				<option value=""><?php _e( 'Select Option', 'wen-map-marker' ); ?></option>
+				<option value="before_content" <?php selected('before_content',$wen_map_marker_content_append);?>><?php _e( 'Before Content', 'wen-map-marker' ); ?></option>
+				<option value="after_content" <?php selected('after_content',$wen_map_marker_content_append);?>><?php _e( 'After Content', 'wen-map-marker' ); ?></option>
 			</select>
-			<label for=""><strong>OR</strong> Use Shortcode <code>[WMM]</code> in editor.</label>
+			<p><strong><?php _e( 'OR', 'wen-map-marker' ); ?></strong></p>
+			<p class="description">
+			<?php
+				echo sprintf(__('Use Shortcode %s in editor.'), '<code>[WMM]</code>' );
+			 ?>
+			</p>
 		</p>
 		<?php
 	}
@@ -240,7 +245,7 @@ class wen_map_marker_Admin {
 		if(isset($_GET['action'])){
 
 			global $post;
-			
+
 
 			$wen_map_marker_lat = $this->get_custom_field_value("wen_map_marker_lat");
 			$wen_map_marker_lng = $this->get_custom_field_value("wen_map_marker_lng");
@@ -273,7 +278,7 @@ class wen_map_marker_Admin {
 				$("#wen-map-marker-search").val("");
 			});
 		});</script>';
-		
+
 	}
 
 	function setup_menu(){
@@ -294,18 +299,18 @@ class wen_map_marker_Admin {
 		register_setting( 'wen-map-marker-settings-group', 'wen_map_marker_settings' );
 
 		add_settings_section(
-			'wen_map_marker_setting_post_type_section', 
-			__( 'Post Type Options', 'wen-map-marker' ), 
+			'wen_map_marker_setting_post_type_section',
+			__( 'Post Type Options', 'wen-map-marker' ),
 			'__return_false',
 			'wen-map-marker-settings-group'
 		);
 
-		add_settings_field( 
-			'wen_map_marker_setting_post_types', 
-			__( 'Select Post Types', 'wen-map-marker' ), 
-			array(&$this,'checkbox_field_render'), 
-			'wen-map-marker-settings-group', 
-			'wen_map_marker_setting_post_type_section' 
+		add_settings_field(
+			'wen_map_marker_setting_post_types',
+			__( 'Select Post Types', 'wen-map-marker' ),
+			array(&$this,'checkbox_field_render'),
+			'wen-map-marker-settings-group',
+			'wen_map_marker_setting_post_type_section'
 		);
 	}
 
@@ -316,7 +321,7 @@ class wen_map_marker_Admin {
 	 */
 	function checkbox_field_render()
 	{
-		$post_types = get_post_types(array(   'public'   => true )); 
+		$post_types = get_post_types(array(   'public'   => true ));
         $wen_map_marker_settings = get_option('wen_map_marker_settings');
 		foreach ($post_types as $key => $post_type) {
             if('attachment' != $key){
@@ -376,7 +381,7 @@ class wen_map_marker_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	function add_tinymce_button( $initArray ) 
+	function add_tinymce_button( $initArray )
 	{
 		$icon_path = plugin_dir_url( __FILE__ ) . 'images/map_button.png';
 		$title = __("Add WEN Map Marker Shortcode","wen-map-marker");
