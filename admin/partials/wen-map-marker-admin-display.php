@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    wen_map_marker
- * @subpackage wen_map_marker/admin/partials
+ * @package    WEN_Map_Marker
+ * @subpackage WEN_Map_Marker/admin/partials
  */
 ?>
 

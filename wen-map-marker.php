@@ -36,7 +36,7 @@ if ( ! defined( 'WPINC' ) ) {
  */
 function activate_wen_map_marker() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wen-map-marker-activator.php';
-	wen_map_marker_Activator::activate();
+	WEN_Map_Marker_Activator::activate();
 }
 
 /**
@@ -45,7 +45,7 @@ function activate_wen_map_marker() {
  */
 function deactivate_wen_map_marker() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wen-map-marker-deactivator.php';
-	wen_map_marker_Deactivator::deactivate();
+	WEN_Map_Marker_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_wen_map_marker' );
@@ -68,7 +68,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-wen-map-marker.php';
  */
 function run_wen_map_marker() {
 
-	$plugin = new wen_map_marker();
+	$plugin = new WEN_Map_Marker();
 	$plugin->run();
 
 }

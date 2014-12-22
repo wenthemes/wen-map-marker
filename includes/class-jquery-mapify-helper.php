@@ -8,8 +8,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    wen_map_marker
- * @subpackage wen_map_marker/includes
+ * @package    WEN_Map_Marker
+ * @subpackage WEN_Map_Marker/includes
  */
 
 class jquery_mapify_helper {
