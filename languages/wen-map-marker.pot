@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WEN Map Marker\n"
+"POT-Creation-Date: 2014-12-22 13:45+0530\n"
+"PO-Revision-Date: 2014-12-22 13:45+0530\n"
+"Last-Translator: Web Experts Nepal <info@webexpertsnepal.com>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../../wen-map-marker\n"
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:103
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:259
+msgid "WEN Map Marker"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:120
+msgid "Clear location"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:120
+msgid "Clear marker"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:121
+#: ../../wen-map-marker/admin/partials/wen-map-marker-admin-display.php:31
+msgid "Find current location"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:121
+#: ../../wen-map-marker/admin/partials/wen-map-marker-admin-display.php:31
+msgid "Locate User"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:130
+msgid "Show Map"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:133
+msgid "After Content"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:134
+msgid "Before Content"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:135
+msgid "Do not append"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:137
+msgid "OR"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:140
+#, php-format
+msgid "Use Shortcode %s in editor."
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:277
+msgid "Post Type Options"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:284
+msgid "Select Post Types"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:318
+msgid "Settings"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:361
+msgid "Add WEN Map Marker Shortcode"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:395
+msgid "Enter zoom"
+msgstr ""
+
+#: ../../wen-map-marker/admin/class-wen-map-marker-admin.php:399
+msgid "Insert"
+msgstr ""
+
+#: ../../wen-map-marker/admin/partials/wen-map-marker-admin-display.php:16
+msgid "WEN Map Marker Settings"
+msgstr ""
+
+#: ../../wen-map-marker/admin/partials/wen-map-marker-admin-display.php:26
+msgid "Generate Custom Map Marker Shortcode"
+msgstr ""
