@@ -97,7 +97,7 @@ class wen_map_marker {
 	private function load_dependencies() {
 
 		/**
-		 * The class responsible for intracting with 
+		 * The class responsible for intracting with
 		 * jQuery Mapify Plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-jquery-mapify-helper.php';
@@ -166,7 +166,7 @@ class wen_map_marker {
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_meta_boxes' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'meta_box_save' );
 		$this->loader->add_filter( 'plugin_action_links_'.$this->wen_map_marker."/".$this->wen_map_marker.".php", $plugin_admin, 'plugin_settings_link' );
-		
+
 	}
 
 	/**
@@ -184,7 +184,10 @@ class wen_map_marker {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_filter( 'the_content', $plugin_public, 'append_map' );
 
-		add_shortcode( 'WMM', array($plugin_public,'map_shortcode' ) );
+		// Enable shortcode in Text widget
+		add_filter( 'widget_text', 'do_shortcode');
+
+		add_shortcode( 'WMM', array( $plugin_public, 'map_shortcode' ) );
 	}
 
 	/**
