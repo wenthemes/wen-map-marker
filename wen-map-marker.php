@@ -14,11 +14,11 @@
  *
  * @wordpress-plugin
  * Plugin Name:       WEN Map Marker
- * Plugin URI:        http://webexpertsnepal.com/wen-map-marker
+ * Plugin URI:        http://webexpertsnepal.com
  * Description:       An extreamly easy way to add Google Map on the WordPress sites.
  * Version:           1.0.0
- * Author:            WEN Team
- * Author URI:        http://webexpertsnepal.com/
+ * Author:            Web Experts Nepal
+ * Author URI:        http://webexpertsnepal.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wen-map-marker
