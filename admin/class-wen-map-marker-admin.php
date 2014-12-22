@@ -154,9 +154,9 @@ class wen_map_marker_Admin {
 			<label for="wen_map_marker_content_append"><strong><?php _e( 'Show Map', 'wen-map-marker' ); ?></strong></label>
 			<?php $wen_map_marker_content_append = $this->get_custom_field_value("wen_map_marker_content_append");?>
 			<select name="wen_map_marker_content_append" id="wen_map_marker_content_append">
-				<option value=""><?php _e( 'Select Option', 'wen-map-marker' ); ?></option>
-				<option value="before_content" <?php selected('before_content',$wen_map_marker_content_append);?>><?php _e( 'Before Content', 'wen-map-marker' ); ?></option>
 				<option value="after_content" <?php selected('after_content',$wen_map_marker_content_append);?>><?php _e( 'After Content', 'wen-map-marker' ); ?></option>
+				<option value="before_content" <?php selected('before_content',$wen_map_marker_content_append);?>><?php _e( 'Before Content', 'wen-map-marker' ); ?></option>
+				<option value=""><?php _e( 'Do not append', 'wen-map-marker' ); ?></option>
 			</select>
 			<p><strong><?php _e( 'OR', 'wen-map-marker' ); ?></strong></p>
 			<p class="description">
