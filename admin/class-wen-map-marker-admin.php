@@ -200,8 +200,15 @@ class WEN_Map_Marker_Admin {
 
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
-		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
+		$post_types = array();
+		if ( isset( $wen_map_marker_settings['post_types'] ) ) {
+			$post_types = (array)$wen_map_marker_settings['post_types'];
+		}
+		$post_types[] = 'toplevel_page_wen-map-marker';
+
+		if ( ! in_array( $screen->id, $post_types ) ) {
 			return;
+		}
 
 		$map_options = array( 'showMarker' => false,
 				'showMarkerOnClick' => true,
