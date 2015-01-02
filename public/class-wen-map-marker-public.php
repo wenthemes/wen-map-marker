@@ -113,9 +113,11 @@ class WEN_Map_Marker_Public {
 		else if( NULL != $atts['post_id']){
 			$wen_map_marker_lat = get_post_meta( $post_id, "wen_map_marker_lat",true );
 			$wen_map_marker_lng = get_post_meta( $post_id, "wen_map_marker_lng",true );
+			$wen_map_marker_zoom = get_post_meta( $post_id, "wen_map_marker_zoom",true );
 
 			$args['lat'] = $wen_map_marker_lat;
 			$args['lng'] = $wen_map_marker_lng;
+			$args['zoom'] = (int) $wen_map_marker_zoom;
 
 		}
 		// In case nothing is passed shortcode
@@ -123,11 +125,13 @@ class WEN_Map_Marker_Public {
 			global $post;
 			$wen_map_marker_lat = get_post_meta( $post->ID, "wen_map_marker_lat",true );
 			$wen_map_marker_lng = get_post_meta( $post->ID, "wen_map_marker_lng",true );
+			$wen_map_marker_zoom = get_post_meta( $post->ID, "wen_map_marker_zoom",true );
 
 			if('' == $wen_map_marker_lat || '' == $wen_map_marker_lng)
 				return false;
 			$args['lat'] = $wen_map_marker_lat;
 			$args['lng'] = $wen_map_marker_lng;
+			$args['zoom'] =(int) $wen_map_marker_zoom;
 		}
 
 		return $jquery_mapify_helper->create($args);

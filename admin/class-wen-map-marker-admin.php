@@ -132,6 +132,7 @@ class WEN_Map_Marker_Admin {
 			<div id="wen-map-marker-canvas"></div>
 			<input type="hidden" id="wen-map-marker-address" name="wen_map_marker_address" value="<?php echo $this->get_custom_field_value("wen_map_marker_address");?>" />
 			<input type="hidden" id="wen-map-marker-lat" name="wen_map_marker_lat" value="<?php echo $this->get_custom_field_value("wen_map_marker_lat");?>" />
+			<input type="hidden" id="wen-map-marker-zoom" name="wen_map_marker_zoom" value="<?php echo $this->get_custom_field_value("wen_map_marker_zoom");?>" />
 			<input type="hidden" id="wen-map-marker-lng" name="wen_map_marker_lng"  value="<?php echo $this->get_custom_field_value("wen_map_marker_lng");?>" />
 	    </div>
 	    <p>
@@ -187,6 +188,10 @@ class WEN_Map_Marker_Admin {
 			update_post_meta( $post_id, 'wen_map_marker_address', esc_attr( $_POST['wen_map_marker_address'] ) );
 
 	    // Save the textarea
+		if( isset( $_POST['wen_map_marker_zoom'] ) )
+			update_post_meta( $post_id, 'wen_map_marker_zoom', esc_attr( $_POST['wen_map_marker_zoom'] ) );
+
+		// Save the textarea
 		if( isset( $_POST['wen_map_marker_lat'] ) )
 			update_post_meta( $post_id, 'wen_map_marker_lat', esc_attr( $_POST['wen_map_marker_lat'] ) );
 
@@ -226,7 +231,8 @@ class WEN_Map_Marker_Admin {
 				'autoLocate'        => false,
 				'geoLocationButton' => ".wen-map-marker-locate-user",
 				'searchInput'       => "#wen-map-marker-search",
-				'afterMarkerDrag'   => 'function(response){
+				'afterMarkerDrag'   => 'function(response){console.log(response)
+					$("#wen-map-marker-zoom").val(response.zoom);
 					$("#wen-map-marker-lat").val(response.lat);$("#wen-map-marker-lng").val(response.lng);$("#wen-map-marker-address").val(response.address);$("#wen-map-marker-search").val(response.address);}'
 			);
 
@@ -239,12 +245,14 @@ class WEN_Map_Marker_Admin {
 
 			$wen_map_marker_lat = $this->get_custom_field_value("wen_map_marker_lat");
 			$wen_map_marker_lng = $this->get_custom_field_value("wen_map_marker_lng");
+			$wen_map_marker_zoom = $this->get_custom_field_value("wen_map_marker_zoom");
 
 
 			if($wen_map_marker_lat != "" and $wen_map_marker_lng != "" ){
 				$map_options['showMarker'] = true;
 				$map_options['lat']        = $wen_map_marker_lat;
 				$map_options['lng']        = $wen_map_marker_lng;
+				$map_options['zoom']        = (int)$wen_map_marker_zoom;
 				echo $jquery_mapify_helper->create( $map_options, 'wen-map-marker-canvas', false);
 	        }
 	        else{
@@ -261,6 +269,7 @@ class WEN_Map_Marker_Admin {
 		jQuery(function($){
 			$(".clear-marker").click(function(){
 				$.jMapify.removeMarker();
+				$("#wen-map-marker-zoom").val("");
 				$("#wen-map-marker-lat").val("");
 				$("#wen-map-marker-lng").val("");
 				$("#wen-map-marker-address").val("");
@@ -403,9 +412,11 @@ JS;
 	 */
 	function tinymce_popup($links)
 	{
+		global $post;
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
-		
+		$wen_map_marker_zoom = get_post_meta( $post->ID, "wen_map_marker_zoom",true );
+
 		if(!isset($wen_map_marker_settings['post_types']) || empty( $wen_map_marker_settings['post_types'] ))
 			return;
 
@@ -416,7 +427,7 @@ JS;
 	    <div>
 	    <p>
 	      <label for="wmm-zoom"><strong><?php _e("Enter zoom","wen-map-marker");?></strong></label>
-	      <input type="text" name="wmm-zoom" id="wmm-zoom" value="15" />
+	      <input type="text" name="wmm-zoom" id="wmm-zoom" value="<?php echo (''!=$wen_map_marker_zoom)?$wen_map_marker_zoom:15;?>" />
 	    </p>
 	      <?php
 	      	submit_button( __('Insert', 'wen-map-marker'), 'primary', 'submit', true, array( 'id' => 'WMM-submit' ) );

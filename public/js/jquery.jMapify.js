@@ -150,7 +150,8 @@
                 settings.afterMarkerDrag.apply(jMapify, [{
                     "lat": location.lat,
                     "lng": location.lng,
-                    "address": $formatted_address
+                    "address": $formatted_address,
+                    "zoom" : $map.getZoom()
                 }]);
                 $map.setCenter(latlng);
             });
