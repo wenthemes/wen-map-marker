@@ -64,7 +64,11 @@ class WEN_Map_Marker_Admin {
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
 		$wen_map_marker_settings['post_types'][] = 'toplevel_page_wen-map-marker';
-		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
+
+		if(!isset($wen_map_marker_settings['post_types']) || empty( $wen_map_marker_settings['post_types'] ))
+			return;
+
+		if( is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
 			return;
 
 		wp_enqueue_style( $this->wen_map_marker, plugin_dir_url( __FILE__ ) . 'css/wen-map-marker-admin.css', array(), $this->version, 'all' );
@@ -81,7 +85,11 @@ class WEN_Map_Marker_Admin {
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
 		$wen_map_marker_settings['post_types'][] = 'toplevel_page_wen-map-marker';
-		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
+		
+		if(!isset($wen_map_marker_settings['post_types']) || empty( $wen_map_marker_settings['post_types'] ))
+			return;
+
+		if( is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
 			return;
 
 		wp_enqueue_script( 'google-map-api', 'http://maps.google.com/maps/api/js?sensor=false&libraries=places', array( 'jquery' ), $this->version );
@@ -349,7 +357,11 @@ class WEN_Map_Marker_Admin {
 
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
-		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
+
+		if(!isset($wen_map_marker_settings['post_types']) || empty( $wen_map_marker_settings['post_types'] ))
+			return;
+
+		if( is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
 			return $buttons;
 
 		array_push( $buttons, '|', 'WEN' );
@@ -393,7 +405,11 @@ JS;
 	{
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
-		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
+		
+		if(!isset($wen_map_marker_settings['post_types']) || empty( $wen_map_marker_settings['post_types'] ))
+			return;
+
+		if( is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
 			return;
 	  ?>
 	  <div id="WMM-popup-form" style="display:none">

@@ -144,9 +144,12 @@ class WEN_Map_Marker_Public {
 
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
 
+		if(!isset($wen_map_marker_settings['post_types']) || empty( $wen_map_marker_settings['post_types'] ))
+			return $content;
+
 		global $post;
 
-		if( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and !in_array($post->post_type,$wen_map_marker_settings['post_types']))
+		if(  is_array($wen_map_marker_settings['post_types']) and !in_array($post->post_type,$wen_map_marker_settings['post_types']))
 			return $content;
 
 		$wen_map_marker_content_append = get_post_meta( $post->ID, 'wen_map_marker_content_append', true );
