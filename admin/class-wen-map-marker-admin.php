@@ -85,7 +85,7 @@ class WEN_Map_Marker_Admin {
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
 		$wen_map_marker_settings['post_types'][] = 'toplevel_page_wen-map-marker';
-		
+
 		if(!isset($wen_map_marker_settings['post_types']) || empty( $wen_map_marker_settings['post_types'] ))
 			return;
 
@@ -415,13 +415,13 @@ JS;
 		global $post;
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
-		$wen_map_marker_zoom = get_post_meta( $post->ID, "wen_map_marker_zoom",true );
 
 		if(!isset($wen_map_marker_settings['post_types']) || empty( $wen_map_marker_settings['post_types'] ))
 			return;
 
 		if( is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
 			return;
+		$wen_map_marker_zoom = get_post_meta( $post->ID, "wen_map_marker_zoom",true );
 	  ?>
 	  <div id="WMM-popup-form" style="display:none">
 	    <div>
