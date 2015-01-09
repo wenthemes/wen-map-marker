@@ -1,8 +1,8 @@
 === WEN Map Marker ===
-Contributors: webexpertsnepal
+Contributors: wenthemes
 Donate link: http://wenthemes.com
 Tags: google, map, custom-post-type, directions, easy map, google map, google map plugin, google maps, latitude, location, longitude, map markers, map plugin, map widget, maps, marker, wp google map, wp google maps, wp maps
-Requires at least: 3.5.1
+Requires at least: 3.8
 Tested up to: 4.1
 Stable tag: 1.0.0
 License: GPLv2 or later
@@ -12,9 +12,7 @@ Extremely easy way to add Google Map on the WordPress sites
 
 == Description ==
 
-<h3>WEN Map Marker</h3>This is very helpful plugin to display Google Map in your site simply typing your address which any knowledge of the coding. Post type can be selected from setting and lat and lng can be set for each post. We have also added button in editor which enable to add map shortcode in the post. You can also generate shortcode for map regardless to the post, which can be used in your post, page or sidebars. Custom zoom level can be set for each map.
-
-This plugin is vary much useful for your contact us like pages where you can show location of you organization in map.
+<h3>WEN Map Marker</h3>This is very helpful plugin to display Google Map in your site simply typing your address which any knowledge of the coding. Post type can be selected from setting and latitude & longitude can be set for each post. We have also added button in editor which enable to add map shortcode in post. You can also generate shortcode for map regardless to the post, which can be used in your post, page or sidebars. Custom zoom level can be set for each map. This plugin is very much useful for your pages like contact page, etc where you can show location of your organization in map.
 
 If you like this plugin, please [rate and review](http://wordpress.org/support/view/plugin-reviews/wen-map-marker).
 If you have any question, suggestion or issue, please [post here](http://wordpress.org/support/plugin/wen-map-marker).

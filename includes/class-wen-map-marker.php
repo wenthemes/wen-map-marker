@@ -97,8 +97,7 @@ class WEN_Map_Marker {
 	private function load_dependencies() {
 
 		/**
-		 * The class responsible for intracting with
-		 * jQuery Mapify Plugin.
+		 * The class responsible for intracting with jQuery Mapify Plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-jquery-mapify-helper.php';
 
@@ -132,8 +131,8 @@ class WEN_Map_Marker {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the WEN_Map_Marker_i18n class in order to set the domain and to register the hook
-	 * with WordPress.
+	 * Uses the WEN_Map_Marker_i18n class in order to set the domain and to register
+	 * the hook with WordPress.
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -186,6 +185,7 @@ class WEN_Map_Marker {
 
 		// Enable shortcode in Text widget
 		add_filter( 'widget_text', 'do_shortcode');
+		add_filter( 'widget_text', 'shortcode_unautop');
 
 		add_shortcode( 'WMM', array( $plugin_public, 'map_shortcode' ) );
 	}

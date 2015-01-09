@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       WEN Map Marker
  * Plugin URI:        http://wenthemes.com
- * Description:       An extreamly easy way to add Google Map on the WordPress sites.
+ * Description:       An extremely easy way to add Google Map on the WordPress sites.
  * Version:           1.0.0
  * Author:            WEN Themes
  * Author URI:        http://wenthemes.com

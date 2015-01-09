@@ -6,7 +6,7 @@
  * @link       http://wenthemes.com
  * @since      1.0.0
  *
- * @package    wen_map_marker
+ * @package    WEN_Map_Marker
  */
 
 // If uninstall not called from WordPress, then exit.
