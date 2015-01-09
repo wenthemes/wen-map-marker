@@ -5,7 +5,7 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       http://webexpertsnepal.com
+ * @link       http://wenthemes.com
  * @since      1.0.0
  *
  * @package    WEN_Map_Marker

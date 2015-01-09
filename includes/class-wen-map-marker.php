@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the dashboard.
  *
- * @link       http://webexpertsnepal.com
+ * @link       http://wenthemes.com
  * @since      1.0.0
  *
  * @package    WEN_Map_Marker
@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    WEN_Map_Marker
  * @subpackage WEN_Map_Marker/includes
- * @author     Web Experts Nepal <info@webexpertsnepal.com>
+ * @author     WEN Themes <info@wenthemes.com>
  */
 class WEN_Map_Marker {
 

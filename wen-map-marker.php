@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://webexpertsnepal.com
+ * @link              http://wenthemes.com
  * @since             1.0.0
  * @package           wen_map_marker
  *
  * @wordpress-plugin
  * Plugin Name:       WEN Map Marker
- * Plugin URI:        http://webexpertsnepal.com
+ * Plugin URI:        http://wenthemes.com
  * Description:       An extreamly easy way to add Google Map on the WordPress sites.
  * Version:           1.0.0
- * Author:            Web Experts Nepal
- * Author URI:        http://webexpertsnepal.com
+ * Author:            WEN Themes
+ * Author URI:        http://wenthemes.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wen-map-marker

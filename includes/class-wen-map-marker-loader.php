@@ -3,7 +3,7 @@
 /**
  * Register all actions and filters for the plugin
  *
- * @link       http://webexpertsnepal.com
+ * @link       http://wenthemes.com
  * @since      1.0.0
  *
  * @package    WEN_Map_Marker
@@ -19,7 +19,7 @@
  *
  * @package    WEN_Map_Marker
  * @subpackage WEN_Map_Marker/includes
- * @author     Web Experts Nepal <info@webexpertsnepal.com>
+ * @author     WEN Themes <info@wenthemes.com>
  */
 class WEN_Map_Marker_Loader {
 

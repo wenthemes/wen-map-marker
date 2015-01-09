@@ -1,6 +1,6 @@
 === WEN Map Marker ===
 Contributors: webexpertsnepal
-Donate link: http://webexpertsnepal.com
+Donate link: http://wenthemes.com
 Tags: google, map, custom-post-type, directions, easy map, google map, google map plugin, google maps, latitude, location, longitude, map markers, map plugin, map widget, maps, marker, wp google map, wp google maps, wp maps
 Requires at least: 3.5.1
 Tested up to: 4.1
