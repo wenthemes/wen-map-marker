@@ -143,7 +143,7 @@ class WEN_Map_Marker_Admin {
 				<option value="before_content" <?php selected('before_content',$wen_map_marker_content_append);?>><?php _e( 'Before Content', 'wen-map-marker' ); ?></option>
 				<option value=""><?php _e( 'Do not append', 'wen-map-marker' ); ?></option>
 			</select>
-			<p><strong><?php _e( 'OR', 'wen-map-marker' ); ?></strong></p>
+			<p><strong><?php echo _x( 'OR', 'Map Metabox', 'wen-map-marker' ); ?></strong></p>
 			<p class="description">
 			<?php
 				echo sprintf(__('Use Shortcode %s in editor.'), '<code>[WMM]</code>' );
