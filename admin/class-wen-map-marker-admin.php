@@ -416,7 +416,7 @@ JS;
 	 *
 	 * @since    1.0.0
 	 */
-	/*function tinymce_popup($links)
+	function tinymce_popup($links)
 	{
 		global $post;
 		$screen = get_current_screen();
@@ -477,6 +477,6 @@ JS;
 	         </script>
 	  <?php
 
-	}*/
+	}
 
 }
