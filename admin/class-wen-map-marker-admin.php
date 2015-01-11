@@ -141,7 +141,7 @@ class WEN_Map_Marker_Admin {
 			<select name="wen_map_marker_content_append" id="wen_map_marker_content_append">
 				<option value="after_content" <?php selected('after_content',$wen_map_marker_content_append);?>><?php _e( 'After Content', 'wen-map-marker' ); ?></option>
 				<option value="before_content" <?php selected('before_content',$wen_map_marker_content_append);?>><?php _e( 'Before Content', 'wen-map-marker' ); ?></option>
-				<option value=""><?php _e( 'Do not append', 'wen-map-marker' ); ?></option>
+				<option value="" <?php selected('',$wen_map_marker_content_append);?>><?php _e( 'Do not append', 'wen-map-marker' ); ?></option>
 			</select>
 			<p><strong><?php echo _x( 'OR', 'Map Metabox', 'wen-map-marker' ); ?></strong></p>
 			<p class="description">
@@ -393,10 +393,16 @@ class WEN_Map_Marker_Admin {
         title : '$title',
         image : '$icon_path',
         onclick : function() {
-           var width = jQuery(window).width(), H = jQuery(window).height(), W = ( 720 < width ) ? 720 : width;
+           /*var width = jQuery(window).width(), H = jQuery(window).height(), W = ( 720 < width ) ? 720 : width;
      W = W - 80;
      H = H - 84;
-     tb_show( '$title', '#TB_inline?width=' + W + '&height=' + H + '&inlineId=WMM-popup-form' );
+     tb_show( '$title', '#TB_inline?width=' + W + '&height=' + H + '&inlineId=WMM-popup-form' );*/
+	
+	var shortcode = '[WMM';
+	shortcode += ']';
+	// inserts the shortcode into the active editor
+	tinyMCE.activeEditor.execCommand('mceInsertContent', 0, shortcode);
+
         }
     });
 }][0]
@@ -410,7 +416,7 @@ JS;
 	 *
 	 * @since    1.0.0
 	 */
-	function tinymce_popup($links)
+	/*function tinymce_popup($links)
 	{
 		global $post;
 		$screen = get_current_screen();
@@ -471,6 +477,6 @@ JS;
 	         </script>
 	  <?php
 
-	}
+	}*/
 
 }
