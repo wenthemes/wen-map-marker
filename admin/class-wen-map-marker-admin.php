@@ -362,19 +362,49 @@ class WEN_Map_Marker_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	function register_tinymce_button( $buttons ) {
+	// function register_tinymce_button( $buttons ) {
 
-		$screen = get_current_screen();
-		$wen_map_marker_settings = get_option('wen_map_marker_settings');
+	// 	$screen = get_current_screen();
+	// 	$wen_map_marker_settings = get_option('wen_map_marker_settings');
 
-		if(!isset($wen_map_marker_settings['post_types']) || empty( $wen_map_marker_settings['post_types'] ))
-			return;
+	// 	if(!isset($wen_map_marker_settings['post_types']) || empty( $wen_map_marker_settings['post_types'] ))
+	// 		return;
 
-		if( is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
-			return $buttons;
+	// 	if( is_array($wen_map_marker_settings['post_types']) and !in_array($screen->id,$wen_map_marker_settings['post_types']))
+	// 		return $buttons;
 
-		array_push( $buttons, '|', 'WEN' );
-			return $buttons;
+	// 	array_push( $buttons, '|', 'WEN' );
+	// 		return $buttons;
+
+	// }
+
+	function tinymce_button(){
+
+		if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
+		     add_filter( 'mce_buttons', array($this,'register_tinymce_button' ) );
+		     add_filter( 'mce_external_plugins', array($this,'add_tinymce_button' ) );
+		}
+
+	}
+
+	function register_tinymce_button( $buttons ){
+
+		array_push( $buttons, 'wen_map_marker' );
+		return $buttons;
+
+	}
+
+	function add_tinymce_button( $plugin_array ){
+
+		$plugin_array['wen_map_marker'] = plugin_dir_url( __FILE__ ) . '../admin/js/wen-map-marker-tinymce-plugin.js';
+		return $plugin_array;
+
+	}
+
+	function tinymce_external_language( $locales ){
+
+		$locales ['wen-map-marker'] =  WEN_MAP_MARKER_DIR . '/admin/partials/wen-map-marker-tinymce-plugin-langs.php';
+    return $locales;
 
 	}
 
@@ -383,7 +413,7 @@ class WEN_Map_Marker_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	function add_tinymce_button( $initArray )
+	function add_tinymce_button_temp( $initArray )
 	{
 		$icon_path = plugin_dir_url( __FILE__ ) . 'images/map_button.png';
 		$title = __("Add WEN Map Marker Shortcode","wen-map-marker");
@@ -397,7 +427,7 @@ class WEN_Map_Marker_Admin {
      W = W - 80;
      H = H - 84;
      tb_show( '$title', '#TB_inline?width=' + W + '&height=' + H + '&inlineId=WMM-popup-form' );*/
-	
+
 	var shortcode = '[WMM';
 	shortcode += ']';
 	// inserts the shortcode into the active editor

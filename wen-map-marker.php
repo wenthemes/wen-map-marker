@@ -29,6 +29,7 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+define( 'WEN_MAP_MARKER_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 
 /**
  * The code that runs during plugin activation.
