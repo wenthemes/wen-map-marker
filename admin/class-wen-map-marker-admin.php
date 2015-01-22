@@ -323,14 +323,14 @@ class WEN_Map_Marker_Admin {
 	 */
 	function checkbox_field_render()
 	{
-		$post_types = get_post_types(array(   'public'   => true ));
+		$post_types = get_post_types(array(   'public'   => true ) , 'objects' );
         $wen_map_marker_settings = get_option('wen_map_marker_settings');
 		foreach ($post_types as $key => $post_type) {
             if('attachment' != $key){
                 $checked = ( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and in_array($key,$wen_map_marker_settings['post_types']))?"checked='checked'":"";
                 echo '<label for="post_type_'.$key.'">
                         <input name="wen_map_marker_settings[post_types][]" type="checkbox" '.$checked.' value="'.$key.'" id="post_type_'.$key.'"  />
-                        <span>'.ucfirst($post_type).'</span></label><br />';
+                        <span>'.esc_html($post_type->labels->singular_name).' ('.$key.')</span></label><br />';
             }
         }
 
