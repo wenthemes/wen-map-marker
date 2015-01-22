@@ -63,7 +63,7 @@ class WEN_Map_Marker_Admin {
 
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
-		$wen_map_marker_settings['post_types'][] = 'toplevel_page_wen-map-marker';
+		$wen_map_marker_settings['post_types'][] = 'wen-addons_page_wen-map-marker';
 
 		if(!isset($wen_map_marker_settings['post_types']) || empty( $wen_map_marker_settings['post_types'] ))
 			return;
@@ -84,7 +84,7 @@ class WEN_Map_Marker_Admin {
 
 		$screen = get_current_screen();
 		$wen_map_marker_settings = get_option('wen_map_marker_settings');
-		$wen_map_marker_settings['post_types'][] = 'toplevel_page_wen-map-marker';
+		$wen_map_marker_settings['post_types'][] = 'wen-addons_page_wen-map-marker';
 
 		if(!isset($wen_map_marker_settings['post_types']) || empty( $wen_map_marker_settings['post_types'] ))
 			return;
@@ -217,7 +217,7 @@ class WEN_Map_Marker_Admin {
 		if ( isset( $wen_map_marker_settings['post_types'] ) ) {
 			$post_types = (array)$wen_map_marker_settings['post_types'];
 		}
-		$post_types[] = 'toplevel_page_wen-map-marker';
+		$post_types[] = 'wen-addons_page_wen-map-marker';
 
 		if ( ! in_array( $screen->id, $post_types ) ) {
 			return;
