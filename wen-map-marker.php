@@ -31,6 +31,10 @@ if ( ! defined( 'WPINC' ) ) {
 }
 define( 'WEN_MAP_MARKER_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 
+//  Load WEN Addons
+require_once WEN_MAP_MARKER_DIR . '/wen-addons/wen_addons.php';
+
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-wen-map-marker-activator.php
