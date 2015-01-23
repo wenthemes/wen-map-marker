@@ -330,7 +330,7 @@ class WEN_Map_Marker_Admin {
                 $checked = ( isset($wen_map_marker_settings['post_types']) and is_array($wen_map_marker_settings['post_types']) and in_array($key,$wen_map_marker_settings['post_types']))?"checked='checked'":"";
                 echo '<label for="post_type_'.$key.'">
                         <input name="wen_map_marker_settings[post_types][]" type="checkbox" '.$checked.' value="'.$key.'" id="post_type_'.$key.'"  />
-                        <span>'.esc_html($post_type->labels->singular_name).' ('.$key.')</span></label><br />';
+                        <span>'.esc_html($post_type->labels->singular_name).' <em>('.$key.')</em></span></label><br />';
             }
         }
 
@@ -343,7 +343,10 @@ class WEN_Map_Marker_Admin {
 	 */
 	function plugin_settings_link($links)
 	{
-		$settings_link = '<a href="admin.php?page=wen-map-marker">'.__('Settings',"wen-map-marker").'</a>';
+		$settings_url = add_query_arg( array(
+		    'page' => 'wen-map-marker',
+		    ), admin_url( 'admin.php' ) );
+		$settings_link = '<a href="' . esc_url( $settings_url ) . '">'.__('Settings',"wen-map-marker").'</a>';
 		array_unshift($links, $settings_link);
 		return $links;
 	}

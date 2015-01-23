@@ -1,7 +1,7 @@
 <?php
 
 //	Check
-if( !class_exists('WEN_Addons') ) {
+if( ! class_exists( 'WEN_Addons' ) ) {
 
 	//	Define
 	class WEN_Addons {
@@ -53,7 +53,7 @@ if( !class_exists('WEN_Addons') ) {
 			if( !has_nav_menu(self::$menu_name) ) {
 
 			    //  Add Top Level Page
-			    add_menu_page( 'WEN Addons', 'WEN Addons', 'manage_options', self::$menu_name, 'wen_addons_page_render', plugin_dir_url(dirname(__FILE__) . 'index.php') . 'wen-addons/favicon.png', 100 );
+			    add_menu_page( __( 'WEN Addons', 'wen-map-marker' ), __( 'WEN Addons', 'wen-map-marker' ), 'manage_options', self::$menu_name, 'wen_addons_page_render', plugin_dir_url(dirname(__FILE__) . 'index.php') . 'wen-addons/favicon.png', 100 );
 			}
 		}
 
@@ -115,7 +115,7 @@ if( !class_exists('WEN_Addons') ) {
 			$wen_plugins = $this->get_plugins_list();
 ?>
 <div class="wrap">
-	<h2><?php echo __('WEN Addons'); ?></h2><br/>
+	<h2><?php echo __( 'WEN Addons', 'wen-map-marker' ); ?></h2><br/>
 
 	<div class="wp-list-table widefat">
 		<?php if( sizeof( $wen_plugins ) > 0 ) { ?>
@@ -133,7 +133,7 @@ if( !class_exists('WEN_Addons') ) {
 						<ul class="plugin-action-buttons">
 							<li>
 							<?php
-								$button_text  = __('Read more');
+								$button_text  = __( 'Read more', 'wen-map-marker' );
 								$button_url   = esc_url( $wen_addon['url'] ) ;
 								$button_tag   = 'a' ;
 								$button_class = 'button' ;
@@ -144,16 +144,16 @@ if( !class_exists('WEN_Addons') ) {
 								 $plugin_key = $wen_addon['slug'].'/'.$wen_addon['slug'].'.php';
 								 if ( in_array( $plugin_key, $all_plugins ) ) {
 								 	// Plugin is already installed, so disable button
-								 	$button_text = 'Installed';
+								 	$button_text = __( 'Installed', 'wen-map-marker' );
 								 	$button_class = 'button button-disabled' ;
 								 	$button_tag   = 'span' ;
 								 }
 								 else {
 								 	if( $plugin_price > 0 ){
-										$button_text   = 'Buy Now' ;
+										$button_text   = __( 'Buy Now', 'wen-map-marker' ) ;
 									}
 									else{
-										$button_text   = 'Install now' ;
+										$button_text   = __( 'Install now', 'wen-map-marker' ) ;
 										$button_url = add_query_arg(array(
 												'tab'       => 'plugin-information',
 												'plugin'    => $wen_addon['slug'],
@@ -187,13 +187,13 @@ if( !class_exists('WEN_Addons') ) {
 					</div>
 					<div class="desc column-description" style="margin-right:0;">
 						<p><?php echo $wen_addon['excerpt']; ?></p>
-						<p>Version <?php echo $wen_addon['meta']['current_version']; ?></cite></p>
+						<p><?php _e( 'Version', 'wen-map-marker' ); ?>&nbsp;<?php echo $wen_addon['meta']['current_version']; ?></cite></p>
 					</div>
 				</div>
 			</div>
 			<?php } ?>
 		</div>
-		<?php } else { echo '<p>' . __('No addons available') . '</p>'; } ?>
+		<?php } else { echo '<p>' . __( 'No addons available', 'wen-map-marker' ) . '</p>'; } ?>
 	</div>
 </div>
 <?php
