@@ -158,13 +158,16 @@ class WEN_Map_Marker_Public {
 
 		$wen_map_marker_content_append = get_post_meta( $post->ID, 'wen_map_marker_content_append', true );
 
-		if( 'do_not_append' == $wen_map_marker_content_append )
-			return $content;
-		$map_output = $this->map_shortcode();
-		if( 'before_content' == $wen_map_marker_content_append)
-			return $map_output.$content;
-		if( 'after_content' == $wen_map_marker_content_append)
-			return $content.$map_output;
-	}
+		if( 'do_not_append' != $wen_map_marker_content_append ){
+			$map_output = $this->map_shortcode();
+			if ( 'before_content' == $wen_map_marker_content_append ) {
+				$content = $map_output . $content;
+			}
+			else if ( 'after_content' == $wen_map_marker_content_append ) {
+				$content = $content . $map_output;
+			}
+		}
+		return $content;
+	} //end function
 
 }
