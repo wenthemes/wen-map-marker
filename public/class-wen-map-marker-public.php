@@ -158,7 +158,7 @@ class WEN_Map_Marker_Public {
 
 		$wen_map_marker_content_append = get_post_meta( $post->ID, 'wen_map_marker_content_append', true );
 
-		if( '' == $wen_map_marker_content_append )
+		if( 'do_not_append' == $wen_map_marker_content_append )
 			return $content;
 		$map_output = $this->map_shortcode();
 		if( 'before_content' == $wen_map_marker_content_append)

@@ -137,11 +137,17 @@ class WEN_Map_Marker_Admin {
 	    </div>
 	    <p>
 			<label for="wen_map_marker_content_append"><strong><?php _e( 'Show Map', 'wen-map-marker' ); ?></strong></label>
-			<?php $wen_map_marker_content_append = $this->get_custom_field_value("wen_map_marker_content_append");?>
+			<?php
+			$wen_map_marker_content_append = $this->get_custom_field_value("wen_map_marker_content_append");
+			if ( false === $wen_map_marker_content_append ) {
+				// Set default
+				$wen_map_marker_content_append = 'after_content';
+			}
+			?>
 			<select name="wen_map_marker_content_append" id="wen_map_marker_content_append">
 				<option value="after_content" <?php selected('after_content',$wen_map_marker_content_append);?>><?php _e( 'After Content', 'wen-map-marker' ); ?></option>
 				<option value="before_content" <?php selected('before_content',$wen_map_marker_content_append);?>><?php _e( 'Before Content', 'wen-map-marker' ); ?></option>
-				<option value="" <?php selected('',$wen_map_marker_content_append);?>><?php _e( 'Do not append', 'wen-map-marker' ); ?></option>
+				<option value="do_not_append" <?php selected('do_not_append',$wen_map_marker_content_append);?>><?php _e( 'Do not append', 'wen-map-marker' ); ?></option>
 			</select>
 			<p><strong><?php echo _x( 'OR', 'Map Metabox', 'wen-map-marker' ); ?></strong></p>
 			<p class="description">
