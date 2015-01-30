@@ -124,8 +124,11 @@ if( ! class_exists( 'WEN_Addons' ) ) {
 			<div class="plugin-card">
 				<div class="plugin-card-top">
 					<a href="<?php echo esc_url( $wen_addon['url'] ); ?>" target="_blank" class="plugin-icon">
+					<?php if ( ! empty( $wen_addon['mini_logo_url'] ) ): ?>
+						<img src="<?php echo esc_url( $wen_addon['mini_logo_url'] ); ?>" alt="<?php echo esc_attr( $wen_addon['title'] ); ?>" />
+					<?php else: ?>
 						<img src="<?php echo esc_url( $wen_addon['image']['thumbnail']['url'] ); ?>" alt="<?php echo esc_attr( $wen_addon['title'] ); ?>" />
-					</a>
+					<?php endif ?>
 					<div class="name column-name">
 						<h4><a href="<?php echo esc_url( $wen_addon['url'] ); ?>" target="_blank"><?php echo $wen_addon['title']; ?></a></h4>
 					</div>
@@ -156,7 +159,7 @@ if( ! class_exists( 'WEN_Addons' ) ) {
 										$button_text   = __( 'Install now', 'wen-map-marker' ) ;
 										$button_url = add_query_arg(array(
 												'tab'       => 'plugin-information',
-												'plugin'    => $wen_addon['slug'],
+												'plugin'    => isset( $wen_addon['meta']['repo_slug'] ) ? $wen_addon['meta']['repo_slug'] : ''  ,
 												'TB_iframe' => 'true',
 												'width'     => 772,
 												'height'    => 623,
