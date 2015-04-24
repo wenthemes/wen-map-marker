@@ -294,11 +294,23 @@ class WEN_Map_Marker_Admin {
       array(&$this,'option_page_init'),
       'dashicons-location-alt'
     );
+    add_submenu_page(
+      'wen-map-marker',
+      __('Shortcode Generator',"wen-map-marker"),
+      __('Shortcode Generator',"wen-map-marker"),
+      'manage_options',
+      'wen-map-marker-shortcode-generator',
+      array(&$this,'shortcode_page_init')
+
+    );
     add_action( 'admin_init', array(&$this,'register_settings' ));
 	}
 
-	function option_page_init(){
-	    include(sprintf("%s/partials/wen-map-marker-admin-display.php",dirname(__FILE__)));
+  function option_page_init(){
+      include(sprintf("%s/partials/wen-map-marker-admin-display.php",dirname(__FILE__)));
+  }
+	function shortcode_page_init(){
+	    include(sprintf("%s/partials/wen-map-marker-shortcode-generator.php",dirname(__FILE__)));
 	}
 
 	/**

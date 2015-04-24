@@ -29,11 +29,12 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+// Define
 define( 'WEN_MAP_MARKER_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
-
-//  Load WEN Addons
-// require_once WEN_MAP_MARKER_DIR . '/wen-addons/wen_addons.php';
-
+define( 'WEN_MAP_MARKER_URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
+define( 'WEN_MAP_MARKER_BASENAME', basename( dirname( __FILE__ ) ) );
+define( 'WEN_MAP_MARKER_BASE_FILE', plugin_basename( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.
