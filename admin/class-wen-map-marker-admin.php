@@ -221,17 +221,17 @@ class WEN_Map_Marker_Admin {
 	 */
 	function admin_head() {
 
-		$screen = get_current_screen();
-		$wen_map_marker_settings = get_option('wen_map_marker_settings');
-		$post_types = array();
-		if ( isset( $wen_map_marker_settings['post_types'] ) ) {
-			$post_types = (array)$wen_map_marker_settings['post_types'];
-		}
-		$post_types[] = 'wen-addons_page_wen-map-marker';
+    $screen = get_current_screen();
 
-		if ( ! in_array( $screen->id, $post_types ) ) {
-			return;
-		}
+    $wen_map_marker_settings = get_option('wen_map_marker_settings');
+    $allowed = array(
+      'wen-map-marker_page_wen-map-marker-shortcode-generator'
+    );
+    $allowed = array_merge( $allowed, $wen_map_marker_settings['post_types'] );
+
+    if ( ! in_array( $screen->id, $allowed ) ) {
+      return;
+    }
 
 		$map_options = array( 'showMarker' => false,
 				'showMarkerOnClick' => true,
@@ -346,7 +346,7 @@ class WEN_Map_Marker_Admin {
 
 		add_settings_field(
 			'wen_map_marker_setting_post_types',
-			__( 'Select Post Types', 'wen-map-marker' ),
+			__( 'Enable Map for', 'wen-map-marker' ),
 			array(&$this,'checkbox_field_render'),
 			'wen-map-marker-settings-group',
 			'wen_map_marker_setting_post_type_section'
