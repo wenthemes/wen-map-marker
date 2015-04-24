@@ -1,6 +1,5 @@
 <div class="wrap">
 
-
   <h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
   <div id="poststuff">
@@ -14,13 +13,21 @@
 
           <div class="postbox">
 
-
             <div class="inside">
 
-
-        asdf
-
-
+              <div class="">
+                <div class="wen-map-marker-wrapper">
+                  <div class="wen-map-marker-search-bar">
+                    <a href="#" class="wen-map-marker-locate-user" title="<?php echo esc_attr( __( 'Find current location', 'wen-map-marker' ) ); ?>"><?php _e( 'Locate User', 'wen-map-marker' ); ?></a>
+                    <input type="text" id="wen-map-marker-search-custom"  />
+                  </div>
+                  <div id="wen-map-marker-canvas-custom"></div>
+                  <input type="hidden" id="wen-map-marker-address-custom" name="wen_map_marker_address_custom"  />
+                  <input type="hidden" id="wen-map-marker-lat-custom" name="wen_map_marker_lat_custom"  />
+                  <input type="hidden" id="wen-map-marker-lng-custom" name="wen_map_marker_lng_custom"  />
+                  <input type="text" id="wen-map-marker-shortcode-custom" name="wen_map_marker_shortcode_custom"  />
+                </div>
+              </div>
 
             </div> <!-- .inside -->
 
