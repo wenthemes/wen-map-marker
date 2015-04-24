@@ -286,11 +286,14 @@ class WEN_Map_Marker_Admin {
 	}
 
 	function setup_menu(){
-		if( class_exists('WEN_Addons') ){
-	    add_submenu_page( WEN_Addons::$menu_name, __('WEN Map Marker',"wen-map-marker"), __('WEN Map Marker',"wen-map-marker"), 'manage_options', 'wen-map-marker', array(&$this,'option_page_init') );
-		}else{
-	    add_menu_page( __('WEN Map Marker',"wen-map-marker"), __('WEN Map Marker',"wen-map-marker"), 'manage_options', 'wen-map-marker', array(&$this,'option_page_init') );
-		}
+    add_menu_page(
+      __('WEN Map Marker',"wen-map-marker"),
+      __('WEN Map Marker',"wen-map-marker"),
+      'manage_options',
+      'wen-map-marker',
+      array(&$this,'option_page_init'),
+      'dashicons-location-alt'
+    );
     add_action( 'admin_init', array(&$this,'register_settings' ));
 	}
 

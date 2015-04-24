@@ -32,7 +32,7 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'WEN_MAP_MARKER_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 
 //  Load WEN Addons
-require_once WEN_MAP_MARKER_DIR . '/wen-addons/wen_addons.php';
+// require_once WEN_MAP_MARKER_DIR . '/wen-addons/wen_addons.php';
 
 
 /**
