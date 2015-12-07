@@ -23,6 +23,9 @@
         <div class="inside">
             <h4>WordPress Themes</h4>
             <p>
+              <a href="http://wenthemes.com/item/wordpress-themes/photo-perfect/" target="_blank">Photo Perfect</a>
+            </p>
+            <p>
               <a href="http://wenthemes.com/item/wordpress-themes/wen-business/" target="_blank">WEN Business</a>
             </p>
             <p>
